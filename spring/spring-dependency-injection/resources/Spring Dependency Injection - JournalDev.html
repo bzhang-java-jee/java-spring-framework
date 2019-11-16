@@ -1,0 +1,2409 @@
+<!DOCTYPE html>
+<!-- saved from url=(0059)https://www.journaldev.com/2410/spring-dependency-injection -->
+<html lang="en-US" prefix="og: http://ogp.me/ns#"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script async="" src="./Spring Dependency Injection - JournalDev_files/apstag.js.download"></script><script type="text/javascript">!function(a9,a,p,s,t,A,g){if(a[a9])return;function q(c,r){a[a9]._Q.push([c,r])}a[a9]={init:function(){q("i",arguments)},fetchBids:function(){q("f",arguments)},setDisplayBids:function(){},targetingKeys:function(){return[]},_Q:[]};A=p.createElement(s);A.async=!0;A.src=t;g=p.getElementsByTagName(s)[0];g.parentNode.insertBefore(A,g)}("apstag",window,document,"script","//c.amazon-adsystem.com/aax2/apstag.js");</script><script type="text/javascript" async="" src="./Spring Dependency Injection - JournalDev_files/prebid_v1.js.download"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spring Dependency Injection - JournalDev</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v9.0.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Spring Dependency Injection Example, Annotations and XML configuration, AnnotationConfigApplicationContext, @Component, @Configuration, @ComponentScan,@Bean">
+<link rel="canonical" href="https://www.journaldev.com/2410/spring-dependency-injection">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Dependency Injection - JournalDev">
+<meta property="og:description" content="Spring Dependency Injection Example, Annotations and XML configuration, AnnotationConfigApplicationContext, @Component, @Configuration, @ComponentScan,@Bean">
+<meta property="og:url" content="https://www.journaldev.com/2410/spring-dependency-injection">
+<meta property="og:site_name" content="JournalDev">
+<meta property="article:author" content="https://www.facebook.com/PankajKumarJaiswal">
+<meta property="article:section" content="Spring">
+<meta property="article:published_time" content="2013-12-17T08:26:33+00:00">
+<meta property="article:modified_time" content="2018-04-06T09:30:02+00:00">
+<meta property="og:updated_time" content="2018-04-06T09:30:02+00:00">
+<meta property="og:image" content="https://www.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection.jpg">
+<meta property="og:image:secure_url" content="https://www.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:description" content="Spring Dependency Injection Example, Annotations and XML configuration, AnnotationConfigApplicationContext, @Component, @Configuration, @ComponentScan,@Bean">
+<meta name="twitter:title" content="Spring Dependency Injection - JournalDev">
+<meta name="twitter:image" content="https://www.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection.jpg">
+<meta name="twitter:creator" content="@JournalDev">
+<script async="" type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/gpt.js.download"></script><script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"Person","url":"https:\/\/www.journaldev.com\/","sameAs":[],"@id":"#person","name":"Pankaj Kumar"}</script>
+<script type="application/ld+json">{"@context":"https:\/\/schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https:\/\/www.journaldev.com\/","name":"Home"}},{"@type":"ListItem","position":2,"item":{"@id":"https:\/\/www.journaldev.com\/spring","name":"Spring"}},{"@type":"ListItem","position":3,"item":{"@id":"https:\/\/www.journaldev.com\/2410\/spring-dependency-injection","name":"Spring Dependency Injection"}}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="amphtml" href="https://www.journaldev.com/2410/spring-dependency-injection/amp"><link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Feed" href="https://www.journaldev.com/feed">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Comments Feed" href="https://www.journaldev.com/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="JournalDev » Spring Dependency Injection Comments Feed" href="https://www.journaldev.com/2410/spring-dependency-injection/feed">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/cdn.journaldev.com\/wp-includes\/js\/wp-emoji-release.min.js"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Spring Dependency Injection - JournalDev_files/wp-emoji-release.min.js.download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="news-pro-theme-css" href="./Spring Dependency Injection - JournalDev_files/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="toc-screen-css" href="./Spring Dependency Injection - JournalDev_files/screen.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="dashicons-css" href="./Spring Dependency Injection - JournalDev_files/dashicons.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="google-fonts-css" href="./Spring Dependency Injection - JournalDev_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-asl-basic-css" href="./Spring Dependency Injection - JournalDev_files/style.basic.css" type="text/css" media="all">
+<link rel="stylesheet" id="wpdreams-ajaxsearchlite-css" href="./Spring Dependency Injection - JournalDev_files/style-simple-red.css" type="text/css" media="all">
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/jquery.js.download"></script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/jquery-migrate.min.js.download"></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://cdn.journaldev.com/wp-content/themes/genesis/lib/js/html5shiv.min.js'></script>
+<![endif]-->
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/responsive-menu.js.download"></script>
+<link rel="https://api.w.org/" href="https://www.journaldev.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.journaldev.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.journaldev.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.9.8">
+<link rel="shortlink" href="https://www.journaldev.com/?p=2410">
+<link rel="alternate" type="application/json+oembed" href="https://www.journaldev.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection">
+<link rel="alternate" type="text/xml+oembed" href="https://www.journaldev.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection&amp;format=xml">
+
+<link rel="icon" type="image/png" href="https://www.journaldev.com/fav.png">
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/2273.js.download"></script><style type="text/css">.waldo-sticky-footer{position: fixed; width: 100%; bottom: 0px; left: 0px; text-align: center; z-index: 9995;}.waldo-sticky-footer iframe {margin-left: auto;margin-right: auto;}.waldo-sticky-sidebar{position: fixed; width: 100%; top: 10px;z-index: 90}.waldo-overlay{position: fixed;height: 100%;width: 100%;top: 0;left: 0;z-index: 105;background: rgba(0,0,0,0.7);}#waldo-counter {position: absolute;bottom: 0;right: 0;color: #fff;font-size: 30px;padding: 15px;}.waldo-bfleft {position: fixed; left: 0; top: 10px;z-index:101;}.waldo-bfright {position: fixed; right: 0; top: 10px;z-index:101;}#waldo-close-button a {border: 1px solid rgba(0,0,0,.35);padding: 3px;font-size: 12px;color: #fff;font-weight: bold;background-color: #777;}</style><script type="text/javascript">googletag.cmd.push(function() {gptAdSlots[2281] = googletag.defineSlot('/124067137/journaldev728x90FL_2', [[728, 90], [970, 90], [970, 250], [320, 50]], 'waldo-tag-2281').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [970, 90], [970, 250]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3019] = googletag.defineSlot('/8491498/journaldev728x90FL_2_Universal_Passback_5bc80844d6c1b', [[728, 90], [320, 50]], 'waldo-tag-3019').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[2282] = googletag.defineSlot('/124067137/journaldev300x250FL_1', [[300, 250], [300, 600], [160, 600]], 'waldo-tag-2282').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600], [160, 600]]).addSize([768, 0], [[300, 250], [300, 600], [160, 600]]).addSize([0, 0], [[300, 250], [300, 600], [160, 600]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3020] = googletag.defineSlot('/8491498/journaldev300x250FL_1_Universal_Passback_5bc80847aa4d0', [[300, 250], [160, 600]], 'waldo-tag-3020').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250]]).addSize([768, 0], [[160, 600]]).addSize([0, 0], [[160, 600]]).build()).addService(googletag.pubads());gptAdSlots[2283] = googletag.defineSlot('/124067137/journaldev300x250FL_2', [[300, 250], [300, 600], [160, 600]], 'waldo-tag-2283').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250], [300, 600], [160, 600]]).addSize([768, 0], [[300, 250], [300, 600], [160, 600]]).addSize([0, 0], [[300, 250], [300, 600], [160, 600]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3021] = googletag.defineSlot('/8491498/journaldev300x250FL_2_Universal_Passback_5bc8084a91584', [[300, 250], [160, 600]], 'waldo-tag-3021').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[300, 250]]).addSize([768, 0], [[160, 600]]).addSize([0, 0], [[160, 600]]).build()).addService(googletag.pubads());gptAdSlots[2280] = googletag.defineSlot('/124067137/journaldev728x90FL_1', [[728, 90], [320, 50]], 'waldo-tag-2280').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3018] = googletag.defineSlot('/8491498/journaldev728x90FL_1_Universal_Passback_5bc80841e910f', [[728, 90], [320, 50]], 'waldo-tag-3018').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());gptAdSlots[2397] = googletag.defineSlot('/124067137/journaldev728x90FS_1', [[728, 90], [300, 250], [320, 50]], 'waldo-tag-2397').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90], [300, 250]]).addSize([768, 0], [[300, 250], [320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads()).setCollapseEmptyDiv(true,true);gptAdSlots[3069] = googletag.defineSlot('/8491498/journaldev728x90FS_1_Universal_Passback_5bc808c67e3e0', [[728, 90], [320, 50]], 'waldo-tag-3069').defineSizeMapping(googletag.sizeMapping().addSize([1024, 0], [[728, 90]]).addSize([768, 0], [[320, 50]]).addSize([0, 0], [[320, 50]]).build()).addService(googletag.pubads());googletag.pubads().enableSingleRequest();googletag.enableServices();googletag.pubads().addEventListener('impressionViewable', function(event) {hb_refresh(event); hb_sroll_pause(event);});googletag.pubads().addEventListener('slotRenderEnded', function(event) {waldoAddCloseBtn(event); waldoPassbackInit(event);waldoInterstitialInit(event);})});</script>
+
+<script async="async" src="./Spring Dependency Injection - JournalDev_files/gpt.js.download"></script>
+<script>
+  var googletag = googletag || {};
+  googletag.cmd = googletag.cmd || [];
+</script>
+
+<script>
+  googletag.cmd.push(function() {
+    googletag.defineSlot('/8491498/journaldev_video', [[300, 291], [630, 430]], 'div-gpt-ad-1539114023134-0').addService(googletag.pubads());
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+  });
+</script><style type="text/css">.site-title a { background: url(https://cdn.journaldev.com/wp-content/uploads/2018/07/logo1.svg) no-repeat !important; }</style>
+                <link href="./Spring Dependency Injection - JournalDev_files/css(1)" rel="stylesheet" type="text/css">
+                      <meta name="onesignal" content="wordpress-plugin">
+          <link rel="manifest" href="https://www.journaldev.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/manifest.json.php?gcm_sender_id=">
+          <script src="./Spring Dependency Injection - JournalDev_files/OneSignalSDK.js.download" async=""></script>    <script>
+
+      window.OneSignal = window.OneSignal || [];
+
+      OneSignal.push( function() {
+        OneSignal.SERVICE_WORKER_UPDATER_PATH = "OneSignalSDKUpdaterWorker.js.php";
+        OneSignal.SERVICE_WORKER_PATH = "OneSignalSDKWorker.js.php";
+        OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
+
+        OneSignal.setDefaultNotificationUrl("https://www.journaldev.com");
+        var oneSignal_options = {};
+        window._oneSignalInitOptions = oneSignal_options;
+
+        oneSignal_options['wordpress'] = true;
+oneSignal_options['appId'] = 'bab8c5d5-918b-46f8-8634-2efa6c23e327';
+oneSignal_options['autoRegister'] = true;
+oneSignal_options['welcomeNotification'] = { };
+oneSignal_options['welcomeNotification']['title'] = "";
+oneSignal_options['welcomeNotification']['message'] = "";
+oneSignal_options['path'] = "https://www.journaldev.com/wp-content/plugins/onesignal-free-web-push-notifications/sdk_files/";
+oneSignal_options['safari_web_id'] = "web.onesignal.auto.0818a4e7-118f-4fc1-b0e2-07892e811a2a";
+oneSignal_options['promptOptions'] = { };
+oneSignal_options['notifyButton'] = { };
+oneSignal_options['notifyButton']['enable'] = true;
+oneSignal_options['notifyButton']['position'] = 'bottom-left';
+oneSignal_options['notifyButton']['theme'] = 'default';
+oneSignal_options['notifyButton']['size'] = 'medium';
+oneSignal_options['notifyButton']['prenotify'] = true;
+oneSignal_options['notifyButton']['displayPredicate'] = function() {
+              return OneSignal.isPushNotificationsEnabled()
+                      .then(function(isPushEnabled) {
+                          return !isPushEnabled;
+                      });
+            };
+oneSignal_options['notifyButton']['showCredit'] = false;
+oneSignal_options['notifyButton']['text'] = {};
+oneSignal_options['notifyButton']['text']['message.prenotify'] = 'Stay Updated with us! Subscribe to our free notifications.';
+oneSignal_options['notifyButton']['text']['tip.state.subscribed'] = 'Thanks for subscribing!';
+oneSignal_options['notifyButton']['text']['message.action.subscribed'] = 'Thanks for subscribing!';
+              OneSignal.init(window._oneSignalInitOptions);
+                    });
+
+      function documentInitOneSignal() {
+        var oneSignal_elements = document.getElementsByClassName("OneSignal-prompt");
+
+        var oneSignalLinkClickHandler = function(event) { OneSignal.push(['registerForPushNotifications']); event.preventDefault(); };        for(var i = 0; i < oneSignal_elements.length; i++)
+          oneSignal_elements[i].addEventListener('click', oneSignalLinkClickHandler, false);
+      }
+
+      if (document.readyState === 'complete') {
+           documentInitOneSignal();
+      }
+      else {
+           window.addEventListener("load", function(event){
+               documentInitOneSignal();
+          });
+      }
+    </script>
+
+                <style type="text/css">
+                    <!--
+                    
+            @font-face {
+                font-family: 'aslsicons2';
+                src: url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot');
+                src: url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot?#iefix') format('embedded-opentype'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff2') format('woff2'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff') format('woff'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.ttf') format('truetype'),
+                     url('https://cdn.journaldev.com/wp-content/plugins/ajax-search-lite/css/fonts/icons2.svg#icons') format('svg');
+                font-weight: normal;
+                font-style: normal;
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+                font-size: 0px !important;
+                color: rgba(0, 0, 0, 0);
+            }
+            div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+                font-size: 11px !important;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: 1;
+            }
+            div[id*='ajaxsearchlite'].wpdreams_asl_container {
+                width: 100%;
+                margin: 0px 0px 0px 0px;
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+                font-weight: bold;
+                color: rgba(217, 49, 43, 1);
+                background-color: rgba(238, 238, 238, 1);
+            }
+            div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+                width: 70px;
+                height: 70px;
+            }
+            div.asl_r .results {
+                max-height: none;
+            }
+                                -->
+                </style>
+                            <script type="text/javascript">
+                if ( typeof _ASL !== "undefined" && _ASL !== null && typeof _ASL.initialize !== "undefined" )
+                    _ASL.initialize();
+            </script>
+            <link rel="icon" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img-150x150.png" sizes="32x32">
+<link rel="icon" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png" sizes="192x192">
+<link rel="apple-touch-icon-precomposed" href="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png">
+<meta name="msapplication-TileImage" content="https://cdn.journaldev.com/wp-content/uploads/2015/08/jd-site-img.png">
+		<style type="text/css" id="wp-custom-css">
+			.scriptlesssocialsharing{box-sizing:border-box;margin:18px auto}
+.scriptlesssocialsharing-buttons{border-collapse:separate;border-spacing:3px;display:table;table-layout:fixed;width:100%}
+.scriptlesssocialsharing-buttons a.button{border:none;border-radius:0;color:white;display:table-cell;text-align:center;text-decoration:none;padding:9px}
+.scriptlesssocialsharing-buttons a.button:hover{color:#fff}
+.scriptlesssocialsharing-buttons .sss-name{position:inherit;clip:rect(1px, 1px, 1px, 1px);height:1px;width:1px;border:0;overflow:hidden;word-wrap:break-word}
+.scriptlesssocialsharing-buttons .button.email{background-color:#333;background-color:rgba(51,51,51,0.8)}.scriptlesssocialsharing-buttons .button.email:hover{background-color:#333}
+.scriptlesssocialsharing-buttons .button.twitter{background-color:#55acee;background-color:rgba(85,172,238,0.8)}.scriptlesssocialsharing-buttons .button.twitter:hover{background-color:#55acee}
+.scriptlesssocialsharing-buttons .button.facebook{background-color:#3b5998;background-color:rgba(59,89,152,0.8)}.scriptlesssocialsharing-buttons .button.facebook:hover{background-color:#3b5998}
+.scriptlesssocialsharing-buttons .button.linkedin{background-color:#0077b5;background-color:rgba(0,119,181,0.8)}.scriptlesssocialsharing-buttons .button.linkedin:hover{background-color:#0077b5}
+.scriptlesssocialsharing-buttons .button.google{background-color:#dc4e41;background-color:rgba(220,78,65,0.8)}.scriptlesssocialsharing-buttons .button.google:hover{background-color:#dc4e41}
+.scriptlesssocialsharing-buttons .button.pinterest {background-color: #bd081c;background-color: rgba(189, 8, 28, .8)}
+.scriptlesssocialsharing-buttons .button.pinterest:hover {background-color: #bd081c}  
+.scriptlesssocialsharing-buttons .button.reddit {background-color: #ff4500;background-color: rgba(255, 69, 0, .8)}
+.scriptlesssocialsharing-buttons .button.reddit:hover {background-color: #ff4500}
+@media print {.scriptlesssocialsharing {display: none}}		</style>
+	<script type="text/javascript" async="" src="./Spring Dependency Injection - JournalDev_files/a.min.js.download"></script><link rel="stylesheet" href="./Spring Dependency Injection - JournalDev_files/OneSignalSDKStyles.css"></head>
+<body class="post-template-default single single-post postid-2410 single-format-standard dwpb-push-page dwpb_responsive_extra_small custom-header header-image content-sidebar" itemscope="" itemtype="https://schema.org/WebPage"><div class="site-container"><header class="site-header" itemscope="" itemtype="https://schema.org/WPHeader"><div class="wrap"><div class="title-area"><p class="site-title" itemprop="headline"><a href="https://www.journaldev.com/">JournalDev</a></p><p class="site-description" itemprop="description">Java, Java EE, Android, Python, Web Development Tutorials</p></div><div class="widget-area header-widget-area">
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget8-quick-adsense-3" class="widget widget_adswidget8-quick-adsense"><div class="widget-wrap"><!-- 728x90/320x50 -->
+<div id="waldo-tag-2280" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2280'); });</script></div></div></section>
+</div></div></header><nav class="nav-primary" aria-label="Main" itemscope="" itemtype="https://schema.org/SiteNavigationElement"><div class="wrap"><div class="responsive-menu-icon"></div><ul id="menu-new-headermenu" class="menu genesis-nav-menu menu-primary responsive-menu"><li id="menu-item-17036" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17036"><a href="https://www.journaldev.com/java-tutorial-java-ee-tutorials" itemprop="url"><span itemprop="name">Java Tutorial</span></a></li>
+<li id="menu-item-7611" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7611"><a href="https://www.journaldev.com/2410/spring-dependency-injection#" itemprop="url"><span itemprop="name">#Index Posts</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-7612" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7612"><a href="https://www.journaldev.com/7153/core-java-tutorial" itemprop="url"><span itemprop="name">Core Java Tutorial</span></a></li>
+	<li id="menu-item-7613" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7613"><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" itemprop="url"><span itemprop="name">Java Design Patterns</span></a></li>
+	<li id="menu-item-7614" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7614"><a href="https://www.journaldev.com/2114/servlet-jsp-tutorial" itemprop="url"><span itemprop="name">Servlet JSP Tutorial</span></a></li>
+	<li id="menu-item-7615" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7615"><a href="https://www.journaldev.com/2310/struts2-tutorial-with-example-projects" itemprop="url"><span itemprop="name">Struts 2 Tutorial</span></a></li>
+	<li id="menu-item-7616" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7616"><a href="https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial" itemprop="url"><span itemprop="name">Spring Tutorial</span></a></li>
+	<li id="menu-item-7638" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7638"><a href="https://www.journaldev.com/7635/jsf-tutorial" itemprop="url"><span itemprop="name">JSF Tutorial</span></a></li>
+	<li id="menu-item-7620" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7620"><a href="https://www.journaldev.com/5516/primefaces-tutorial-with-example-projects" itemprop="url"><span itemprop="name">Primefaces Tutorial</span></a></li>
+	<li id="menu-item-7619" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7619"><a href="https://www.journaldev.com/2681/jdbc-tutorial" itemprop="url"><span itemprop="name">JDBC Tutorial</span></a></li>
+	<li id="menu-item-7617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7617"><a href="https://www.journaldev.com/3793/hibernate-tutorial" itemprop="url"><span itemprop="name">Hibernate Tutorial</span></a></li>
+	<li id="menu-item-7618" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7618"><a href="https://www.journaldev.com/6672/mongodb-tutorial-installation-example-projects-integration-with-servlet-spring-jsf" itemprop="url"><span itemprop="name">MongoDB Tutorial</span></a></li>
+</ul>
+</li>
+<li id="menu-item-7621" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-7621"><a href="https://www.journaldev.com/2410/spring-dependency-injection#" itemprop="url"><span itemprop="name">#Interview Questions</span></a>
+<ul class="sub-menu">
+	<li id="menu-item-7622" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7622"><a href="https://www.journaldev.com/java-interview-questions" itemprop="url"><span itemprop="name">Java Interview Questions</span></a></li>
+	<li id="menu-item-23747" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23747"><a href="https://www.journaldev.com/2366/core-java-interview-questions-and-answers" itemprop="url"><span itemprop="name">Core Java Interview Questions</span></a></li>
+	<li id="menu-item-7623" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7623"><a href="https://www.journaldev.com/2529/jdbc-interview-questions-and-answers" itemprop="url"><span itemprop="name">JDBC Interview Questions</span></a></li>
+	<li id="menu-item-7624" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7624"><a href="https://www.journaldev.com/2015/servlet-interview-questions-and-answers" itemprop="url"><span itemprop="name">Servlet Interview Questions</span></a></li>
+	<li id="menu-item-7625" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7625"><a href="https://www.journaldev.com/2110/jsp-interview-questions-and-answers" itemprop="url"><span itemprop="name">JSP Interview Questions</span></a></li>
+	<li id="menu-item-7626" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7626"><a href="https://www.journaldev.com/2354/struts2-interview-questions-and-answers" itemprop="url"><span itemprop="name">Struts2 Interview Questions</span></a></li>
+	<li id="menu-item-7627" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7627"><a href="https://www.journaldev.com/2696/spring-interview-questions-and-answers" itemprop="url"><span itemprop="name">Spring Interview Questions</span></a></li>
+	<li id="menu-item-7628" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7628"><a href="https://www.journaldev.com/3633/hibernate-interview-questions-and-answers" itemprop="url"><span itemprop="name">Hibernate Interview Questions</span></a></li>
+	<li id="menu-item-7629" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7629"><a href="https://www.journaldev.com/7261/jsf-interview-questions-and-answers" itemprop="url"><span itemprop="name">JSF Interview Questions</span></a></li>
+</ul>
+</li>
+<li id="menu-item-17037" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-17037"><a href="https://www.journaldev.com/resources" itemprop="url"><span itemprop="name">Resources</span></a></li>
+</ul></div></nav>	
+	<div class="wrapper mailchimp">
+        <div class="box"> 
+            <form action="https://journaldev.us8.list-manage.com/subscribe/post-json?u=612f3d966c86000f37699d8cf&amp;id=c64db63284&amp;SIGNUP=TOP_HEADER&amp;c=?" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate">
+				<span>
+					Subscribe to Download Java Design Patterns eBook
+				</span>
+				<div class="main_inputs">	
+				<input type="text" value="" name="FNAME" class="name" id="mce-name" placeholder="Full name" required="">
+				
+				<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="name@example.com" required="">
+				
+                <input type="submit" value="Download Now" name="subscribe" id="mc-embedded-subscribe" class="mc-button">
+				</div>
+				
+				 <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_612f3d966c86000f37699d8cf_c64db63284" tabindex="-1" value=""></div>
+    <div class="clear"></div>
+				
+            </form>
+                <div id="subscribe-result" style="display: none">
+					<p>Thank you for subscribing. Please check your email to confirm subscription.</p>
+                </div>
+        </div>
+    </div>
+	
+
+	<script>
+		var $ = jQuery;
+		$(document).ready(function () {
+  var $form = $('#mc-embedded-subscribe-form');
+  if ($form.length > 0) {
+    $('#mc-embedded-subscribe-form input[type="submit"]').bind('click', function (event) {
+      if (event) event.preventDefault();
+      mailchimp_email_register($form);
+    })
+  }
+})
+		
+function mc_validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
+
+function mailchimp_email_register($form) {
+	if(mc_validateEmail($("#mce-EMAIL").val() )) {
+		$('#mc-embedded-subscribe').val('Sending...');
+		$.ajax({
+			type: $form.attr('method'),
+			url: $form.attr('action'),
+			data: $form.serialize(),
+			cache: false,
+			dataType: 'json',
+			contentType: 'application/json; charset=utf-8',
+			error: function (err) { alert('Could not connect to the registration server. Please try again later.') },
+			success: function (data) {
+				$('#mc-embedded-subscribe').val('subscribe');
+				if (data.result === 'success') {
+					console.log(data.msg);
+					$('#mce-EMAIL').css('borderColor', '#ffffff');
+					$('#subscribe-result').css('color', 'rgb(53, 114, 210)');
+					$('#mc-embedded-subscribe-form').fadeOut(300);
+					$('#subscribe-result').fadeIn(300);
+					document.cookie = "subscribed=true; expires=Thu, 18 Dec 2050 12:00:00 UTC;domain=;path=/";
+					$('#mce-EMAIL').val('');
+					$('#mce-name').val('');
+				} else {
+					console.log(data.msg)
+					alert("You have already subscribed! Please try with different email.");
+				}
+			}
+		});
+	} else {
+		alert("Please enter a valid email");
+	}
+};
+	</script>
+
+<div class="site-inner"><div class="content-sidebar-wrap"><main class="content"><div class="breadcrumb" itemtype="https://schema.org/BreadcrumbList">	You are here:
+<span><span><a href="https://www.journaldev.com/">Home</a> » <span><a href="https://www.journaldev.com/spring">Spring</a> » <span class="breadcrumb_last">Spring Dependency Injection</span></span></span></span></div><article class="post-2410 post type-post status-publish format-standard category-spring entry" itemscope="" itemtype="https://schema.org/CreativeWork"><header class="entry-header"><h1 class="entry-title" itemprop="headline">Spring Dependency Injection</h1>
+<p class="entry-meta"><span class="entry-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><a href="https://www.journaldev.com/author/pankaj" class="entry-author-link" itemprop="url" rel="author"><span class="entry-author-name" itemprop="name">Pankaj</span></a></span> <span class="entry-comments-link"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comments">56 Comments</a></span> </p></header><div class="entry-content" itemprop="text"><!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-zone="jd_after_entry_728x90" data-format="728x90"> </div>
+</div>
+<p>Today we will look into Spring <a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial">Dependency Injection</a>. <strong><a href="https://www.journaldev.com/16922/spring-framework">Spring Framework</a></strong> core concepts are “<strong>Dependency Injection</strong>” and “<strong>Aspect Oriented Programming</strong>“. I have written earlier about <a href="https://www.journaldev.com/2394/java-dependency-injection-design-pattern-example-tutorial" title="Java Dependency Injection "><strong>Java Dependency Injection</strong></a> and how we can use <a href="https://www.journaldev.com/2403/google-guice-dependency-injection-example-tutorial" title="Google Guice Dependency Injection Example Tutorial"><strong>Google Guice</strong></a> framework to automate this process in our applications.</p>
+<div id="toc_container" class="toc_light_blue no_bullets"><p class="toc_title">Table of Contents <span class="toc_toggle">[<a href="https://www.journaldev.com/2410/spring-dependency-injection#">hide</a>]</span></p><ul class="toc_list"><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection"><span class="toc_number toc_depth_1">1</span> Spring Dependency Injection</a><ul><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-8211-maven-dependencies"><span class="toc_number toc_depth_2">1.1</span> Spring Dependency Injection – Maven Dependencies</a></li><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-8211-service-classes"><span class="toc_number toc_depth_2">1.2</span> Spring Dependency Injection – Service Classes</a></li><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-8211-component-classes"><span class="toc_number toc_depth_2">1.3</span> Spring Dependency Injection – Component Classes</a></li><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-configuration-with-annotations"><span class="toc_number toc_depth_2">1.4</span> Spring Dependency Injection Configuration with Annotations</a></li><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-xml-based-configuration"><span class="toc_number toc_depth_2">1.5</span> Spring Dependency Injection XML Based Configuration</a></li><li><a href="https://www.journaldev.com/2410/spring-dependency-injection#spring-dependency-injection-junit-test-case"><span class="toc_number toc_depth_2">1.6</span> Spring Dependency Injection JUnit Test Case</a></li></ul></li></ul></div>
+<h2><span id="spring-dependency-injection">Spring Dependency Injection</span></h2>
+<p><a href="./Spring Dependency Injection - JournalDev_files/spring-dependency-injection.jpg"><img src="./Spring Dependency Injection - JournalDev_files/spring-dependency-injection.jpg" alt="spring dependency injection, spring DI, spring @inject" width="560" height="315" class="aligncenter size-full wp-image-10878" srcset="https://cdn.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection.jpg 560w, https://cdn.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection-450x253.jpg 450w, https://cdn.journaldev.com/wp-content/uploads/2013/12/spring-dependency-injection-20x11.jpg 20w" sizes="(max-width: 560px) 100vw, 560px"></a></p>
+<p>This tutorial is aimed to provide details about Spring Dependency Injection example with both annotation based configuration and XML file based configuration. I will also provide JUnit test case example for the application, since easy testability is one of the major benefits of dependency injection.</p>
+<p>I have created <em>spring-dependency-injection</em> maven project whose structure looks like below image.</p>
+<p><a href="https://cdn.journaldev.com/wp-content/uploads/2013/12/Spring-Dependency-Injection.png"><img src="./Spring Dependency Injection - JournalDev_files/Spring-Dependency-Injection-410x450.png" alt="Spring Dependency Injection" width="410" height="450" class="aligncenter size-medium wp-image-2411"></a></p>
+<p>Let’s look at each of the components one by one.</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-format="300x250" data-zone="jd_post_mid_300x250"></div>
+</div>
+
+<h3><span id="spring-dependency-injection-8211-maven-dependencies">Spring Dependency Injection – Maven Dependencies</span></h3>
+<p>I have added Spring and JUnit maven dependencies in pom.xml file, final pom.xml code is below.</p>
+<pre style="display: block;"><code class="hljs xml"><div class="re_clip-board">Copy</div>
+<span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0"</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.journaldev.spring<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-dependency-injection<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+
+	<span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-context<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.0.0.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>junit<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>4.8.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>
+			<span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+		<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span>
+</code></pre>
+<p>Current stable version of Spring Framework is <em>4.0.0.RELEASE</em> and JUnit current version is <em>4.8.1</em>, if you are using any other versions then there might be a small chance that the project will need some change. If you will build the project, you will notice some other jars are also added to maven dependencies because of transitive dependencies, just like above image.</p>
+<h3><span id="spring-dependency-injection-8211-service-classes">Spring Dependency Injection – Service Classes</span></h3>
+<p>Let’s say we want to send email message and twitter message to the users. For dependency injection, we need to have a base class for the services. So I have <code>MessageService</code> interface with single method declaration for sending message.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.services;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">interface</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">boolean</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span></span>;
+}
+</code></pre>
+<p>Now we will have actual implementation classes to send email and twitter message.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.services;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EmailService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+		System.out.println(<span class="hljs-string">"Email Sent to "</span>+rec+ <span class="hljs-string">" with Message="</span>+msg);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	}
+
+}
+</code></pre>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.services;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TwitterService</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">MessageService</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+		System.out.println(<span class="hljs-string">"Twitter message Sent to "</span>+rec+ <span class="hljs-string">" with Message="</span>+msg);
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	}
+
+}
+</code></pre>
+<p>Now that our services are ready, we can move on to Component classes that will consume the service.</p>
+<h3><span id="spring-dependency-injection-8211-component-classes">Spring Dependency Injection – Component Classes</span></h3>
+<p>Let’s write a consumer class for above services. We will have two consumer classes – one with <a href="https://www.journaldev.com/16966/spring-annotations">Spring annotations</a> for autowiring and another without annotation and wiring configuration will be provided in the XML configuration file.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.consumer;
+
+<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.ComponentScan;
+<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.services.MessageService;
+
+<span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplication</span> </span>{
+
+	<span class="hljs-comment">//field-based dependency injection</span>
+	<span class="hljs-comment">//@Autowired</span>
+	<span class="hljs-keyword">private</span> MessageService service;
+	
+<span class="hljs-comment">//	constructor-based dependency injection	</span>
+<span class="hljs-comment">//	@Autowired</span>
+<span class="hljs-comment">//	public MyApplication(MessageService svc){</span>
+<span class="hljs-comment">//		this.service=svc;</span>
+<span class="hljs-comment">//	}</span>
+	
+	<span class="hljs-meta">@Autowired</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setService</span><span class="hljs-params">(MessageService svc)</span></span>{
+		<span class="hljs-keyword">this</span>.service=svc;
+	}
+	
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">processMessage</span><span class="hljs-params">(String msg, String rec)</span></span>{
+		<span class="hljs-comment">//some magic like validation, logging etc</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.service.sendMessage(msg, rec);
+	}
+}
+</code></pre>
+<p>Few important points about MyApplication class:</p>
+<ul>
+<li><code>@Component</code> annotation is added to the class, so that when Spring framework will scan for the components, this class will be treated as component. @Component annotation can be applied only to the class and it’s retention policy is Runtime. If you are not not familiar with Annotations retention policy, I would suggest you to read <a href="https://www.journaldev.com/721/java-annotations" title="Java Annotations Tutorial with Custom Annotation Example and Parsing using Reflection">java annotations tutorial</a>.</li>
+<li><code>@Autowired</code> annotation is used to let Spring know that autowiring is required. This can be applied to field, constructor and methods. This annotation allows us to implement constructor-based, field-based or method-based dependency injection in our components.</li>
+<li>For our example, I am using method-based dependency injection. You can uncomment the constructor method to switch to constructor based dependency injection.</li>
+</ul>
+<p>Now let’s write similar class without annotations.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.consumer;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.services.MessageService;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyXMLApplication</span> </span>{
+
+	<span class="hljs-keyword">private</span> MessageService service;
+
+	<span class="hljs-comment">//constructor-based dependency injection</span>
+<span class="hljs-comment">//	public MyXMLApplication(MessageService svc) {</span>
+<span class="hljs-comment">//		this.service = svc;</span>
+<span class="hljs-comment">//	}</span>
+	
+	<span class="hljs-comment">//setter-based dependency injection</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setService</span><span class="hljs-params">(MessageService svc)</span></span>{
+		<span class="hljs-keyword">this</span>.service=svc;
+	}
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">processMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+		<span class="hljs-comment">// some magic like validation, logging etc</span>
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.service.sendMessage(msg, rec);
+	}
+}
+</code></pre>
+<p>A simple application class consuming the service. For XML based configuration, we can use implement either constructor-based spring dependency injection or method-based spring dependency injection. Note that method-based and setter-based injection approaches are same, it’s just that some prefer calling it setter-based and some call it method-based.</p>
+<h3><span id="spring-dependency-injection-configuration-with-annotations">Spring Dependency Injection Configuration with Annotations</span></h3>
+<p>For annotation based configuration, we need to write a Configurator class that will be used to inject the actual implementation bean to the component property.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.configuration;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.ComponentScan;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.services.EmailService;
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.services.MessageService;
+
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@ComponentScan</span>(value={<span class="hljs-string">"com.journaldev.spring.di.consumer"</span>})
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DIConfiguration</span> </span>{
+
+	<span class="hljs-meta">@Bean</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> MessageService <span class="hljs-title">getMessageService</span><span class="hljs-params">()</span></span>{
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> EmailService();
+	}
+}
+</code></pre>
+<p>Some important points related to above class are:</p>
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<div data-type="ad" data-publisher="journaldev.com" data-zone="jd_leaderboard_728x90" data-format="728x90"> </div>
+</div>
+
+<ul>
+<li><code>@Configuration</code> annotation is used to let Spring know that it’s a Configuration class.</li>
+<li><code>@ComponentScan</code> annotation is used with <code>@Configuration</code> annotation to specify the packages to look for Component classes.</li>
+<li><code>@Bean</code> annotation is used to let Spring framework know that this method should be used to get the bean implementation to inject in Component classes.</li>
+</ul>
+<p>Let’s write a simple program to test our annotation based Spring Dependency Injection example.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board" style="display: block;">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.test;
+
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.configuration.DIConfiguration;
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.consumer.MyApplication;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClientApplication</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+		AnnotationConfigApplicationContext context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(DIConfiguration.class);
+		MyApplication app = context.getBean(MyApplication.class);
+		
+		app.processMessage(<span class="hljs-string">"Hi Pankaj"</span>, <span class="hljs-string">"pankaj@abc.com"</span>);
+		
+		<span class="hljs-comment">//close the context</span>
+		context.close();
+	}
+
+}
+</code></pre>
+<p><code>AnnotationConfigApplicationContext</code> is the implementation of <code>AbstractApplicationContext</code> abstract class and it’s used for autowiring the services to components when annotations are used. <code>AnnotationConfigApplicationContext</code> constructor takes Class as argument that will be used to get the bean implementation to inject in component classes.</p>
+<p><em>getBean(Class)</em> method returns the Component object and uses the configuration for autowiring the objects. Context objects are resource intensive, so we should close them when we are done with it. When we run above program, we get below output.</p>
+<pre style="display: block;"><code class="hljs nginx"><div class="re_clip-board" style="display: none;">Copy</div>
+Dec <span class="hljs-number">16</span>, <span class="hljs-number">2013</span> <span class="hljs-number">11</span>:<span class="hljs-number">49</span>:<span class="hljs-number">20</span> PM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+INFO: Refreshing org.springframework.context.annotation.AnnotationConfigApplicationContext@3067ed13: startup date [M<span class="hljs-literal">on</span> Dec <span class="hljs-number">16</span> <span class="hljs-number">23</span>:<span class="hljs-number">49</span>:<span class="hljs-number">20</span> PST <span class="hljs-number">2013</span>]; <span class="hljs-attribute">root</span> of context hierarchy
+Email Sent to pankaj<span class="hljs-variable">@abc</span>.com with Message=Hi Pankaj
+Dec <span class="hljs-number">16</span>, <span class="hljs-number">2013</span> <span class="hljs-number">11</span>:<span class="hljs-number">49</span>:<span class="hljs-number">20</span> PM org.springframework.context.support.AbstractApplicationContext doClose
+INFO: Closing org.springframework.context.annotation.AnnotationConfigApplicationContext@3067ed13: startup date [M<span class="hljs-literal">on</span> Dec <span class="hljs-number">16</span> <span class="hljs-number">23</span>:<span class="hljs-number">49</span>:<span class="hljs-number">20</span> PST <span class="hljs-number">2013</span>]; <span class="hljs-attribute">root</span> of context hierarchy
+</code></pre>
+<h3><span id="spring-dependency-injection-xml-based-configuration">Spring Dependency Injection XML Based Configuration</span></h3>
+<p>We will create Spring configuration file with below data, file name can be anything.</p>
+<p>applicationContext.xml code:</p>
+<pre style="display: block;"><code class="hljs xml"><div class="re_clip-board" style="display: none;">Copy</div>
+<span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"UTF-8"</span><span class="hljs-meta">?&gt;</span></span>
+<span class="hljs-tag">&lt;<span class="hljs-name">beans</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://www.springframework.org/schema/beans"</span>
+	<span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"</span>&gt;</span>
+
+<span class="hljs-comment">&lt;!-- 
+	&lt;bean id="MyXMLApp" class="com.journaldev.spring.di.consumer.MyXMLApplication"&gt;
+		&lt;constructor-arg&gt;
+			&lt;bean class="com.journaldev.spring.di.services.TwitterService" /&gt;
+		&lt;/constructor-arg&gt;
+	&lt;/bean&gt;
+--&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"twitter"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.journaldev.spring.di.services.TwitterService"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"MyXMLApp"</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"com.journaldev.spring.di.consumer.MyXMLApplication"</span>&gt;</span>
+		<span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"service"</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"twitter"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">property</span>&gt;</span>
+	<span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">beans</span>&gt;</span>
+</code></pre>
+<p>Notice that above XML contains configuration for both constructor-based and setter-based spring dependency injection. Since <code>MyXMLApplication</code> is using setter method for injection, the bean configuration contains <em>property</em> element for injection. For constructor based injection, we have to use <em>constructor-arg</em> element.</p>
+<p>The configuration XML file is placed in the source directory, so it will be in the classes directory after build.</p>
+<p>Let’s see how to use XML based configuration with a simple program.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.test;
+
+<span class="hljs-keyword">import</span> org.springframework.context.support.ClassPathXmlApplicationContext;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.consumer.MyXMLApplication;
+
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ClientXMLApplication</span> </span>{
+
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>{
+		ClassPathXmlApplicationContext context = <span class="hljs-keyword">new</span> ClassPathXmlApplicationContext(
+				<span class="hljs-string">"applicationContext.xml"</span>);
+		MyXMLApplication app = context.getBean(MyXMLApplication.class);
+
+		app.processMessage(<span class="hljs-string">"Hi Pankaj"</span>, <span class="hljs-string">"pankaj@abc.com"</span>);
+
+		<span class="hljs-comment">// close the context</span>
+		context.close();
+	}
+
+}
+</code></pre>
+<p><code>ClassPathXmlApplicationContext</code> is used to get the ApplicationContext object by providing the configuration files location. It has multiple overloaded constructors and we can provide multiple config files also.</p>
+<p>Rest of the code is similar to annotation based configuration test program, the only difference is the way we get the ApplicationContext object based on our configuration choice.</p>
+<p>When we run above program, we get following output.</p>
+<pre style="display: block;"><code class="hljs ruby"><div class="re_clip-board">Copy</div>
+Dec <span class="hljs-number">17</span>, <span class="hljs-number">2013</span> <span class="hljs-number">12</span><span class="hljs-symbol">:</span><span class="hljs-number">01</span><span class="hljs-symbol">:</span><span class="hljs-number">23</span> AM org.springframework.context.support.AbstractApplicationContext prepareRefresh
+<span class="hljs-symbol">INFO:</span> Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@4eeaabad: startup date [Tue Dec <span class="hljs-number">17</span> <span class="hljs-number">00</span><span class="hljs-symbol">:</span><span class="hljs-number">01</span><span class="hljs-symbol">:</span><span class="hljs-number">23</span> PST <span class="hljs-number">2013</span>]; root of context hierarchy
+Dec <span class="hljs-number">17</span>, <span class="hljs-number">2013</span> <span class="hljs-number">12</span><span class="hljs-symbol">:</span><span class="hljs-number">01</span><span class="hljs-symbol">:</span><span class="hljs-number">23</span> AM org.springframework.beans.factory.xml.XmlBeanDefinitionReader loadBeanDefinitions
+<span class="hljs-symbol">INFO:</span> Loading XML bean definitions from <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">path</span> <span class="hljs-title">resource</span> [<span class="hljs-title">applicationContext</span>.<span class="hljs-title">xml</span>]</span>
+Twitter message Sent to pankaj@abc.com with Message=Hi Pankaj
+Dec <span class="hljs-number">17</span>, <span class="hljs-number">2013</span> <span class="hljs-number">12</span><span class="hljs-symbol">:</span><span class="hljs-number">01</span><span class="hljs-symbol">:</span><span class="hljs-number">23</span> AM org.springframework.context.support.AbstractApplicationContext doClose
+<span class="hljs-symbol">INFO:</span> Closing org.springframework.context.support.ClassPathXmlApplicationContext@4eeaabad: startup date [Tue Dec <span class="hljs-number">17</span> <span class="hljs-number">00</span><span class="hljs-symbol">:</span><span class="hljs-number">01</span><span class="hljs-symbol">:</span><span class="hljs-number">23</span> PST <span class="hljs-number">2013</span>]; root of context hierarchy
+</code></pre>
+<p>Notice that some of the output is written by Spring Framework. Since Spring Framework uses log4j for logging purpose and I have not configured it, the output is getting written to console.</p>
+<h3><span id="spring-dependency-injection-junit-test-case">Spring Dependency Injection JUnit Test Case</span></h3>
+<p>One of the major benefit of dependency injection in spring is the ease of having mock service classes rather than using actual services. So I have combined all of the learning from above and written everything in a single JUnit 4 test class for dependency injection in spring.</p>
+<pre style="display: block;"><code class="hljs java"><div class="re_clip-board">Copy</div>
+<span class="hljs-keyword">package</span> com.journaldev.spring.di.test;
+
+<span class="hljs-keyword">import</span> org.junit.Assert;
+<span class="hljs-keyword">import</span> org.junit.After;
+<span class="hljs-keyword">import</span> org.junit.Before;
+<span class="hljs-keyword">import</span> org.junit.Test;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.AnnotationConfigApplicationContext;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Bean;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.ComponentScan;
+<span class="hljs-keyword">import</span> org.springframework.context.annotation.Configuration;
+
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.consumer.MyApplication;
+<span class="hljs-keyword">import</span> com.journaldev.spring.di.services.MessageService;
+
+<span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@ComponentScan</span>(value=<span class="hljs-string">"com.journaldev.spring.di.consumer"</span>)
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyApplicationTest</span> </span>{
+	
+	<span class="hljs-keyword">private</span> AnnotationConfigApplicationContext context = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-meta">@Bean</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> MessageService <span class="hljs-title">getMessageService</span><span class="hljs-params">()</span> </span>{
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MessageService(){
+
+			<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">boolean</span> <span class="hljs-title">sendMessage</span><span class="hljs-params">(String msg, String rec)</span> </span>{
+				System.out.println(<span class="hljs-string">"Mock Service"</span>);
+				<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+			}
+			
+		};
+	}
+
+	<span class="hljs-meta">@Before</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setUp</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+		context = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(MyApplicationTest.class);
+	}
+	
+	<span class="hljs-meta">@After</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">tearDown</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception </span>{
+		context.close();
+	}
+
+	<span class="hljs-meta">@Test</span>
+	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">()</span> </span>{
+		MyApplication app = context.getBean(MyApplication.class);
+		Assert.assertTrue(app.processMessage(<span class="hljs-string">"Hi Pankaj"</span>, <span class="hljs-string">"pankaj@abc.com"</span>));
+	}
+
+}
+</code></pre>
+<p>The class is annotated with <code>@Configuration</code> and <code>@ComponentScan</code> annotation because <em>getMessageService()</em> method returns the <code>MessageService</code> mock implementation. That’s why <em>getMessageService()</em> is annotated with <code>@Bean</code> annotation.</p>
+<p>Since I am testing <code>MyApplication</code> class that is configured with annotation, I am using <code>AnnotationConfigApplicationContext</code> and creating it’s object in the setUp() method. The context is getting closed in <em>tearDown()</em> method. <em>test()</em> method code is just getting the component object from context and testing it.</p>
+<p>Do you wonder how Spring Framework does the autowiring and calling the methods that are unknown to Spring Framework. It’s done with the heavy use of <a href="https://www.journaldev.com/1789/java-reflection-example-tutorial">Java Reflection</a> that we can use to analyze and modify the behaviors of the classes at runtime.</p>
+<div class="download-box"><a href="https://www.journaldev.com/wp-content/uploads/spring/spring-dependency-injection.zip" target="_blank">Download Spring Dependency Injection Project</a></div>
+<p>Download the sample Spring Dependency Injection (DI) project from above URL and play around with it to learn more.</p>
+
+<!-- Quick Adsense WordPress Plugin: http://quickadsense.com/ -->
+<div style="float: none; margin:10px 0 10px 0; text-align:center;">
+<script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display:block" data-ad-format="autorelaxed" data-ad-client="ca-pub-6459403732537629" data-ad-slot="7381719979"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div style="font-size: 0px; height: 0px; line-height: 0px; margin: 0; padding: 0; clear: both;"></div><div class="scriptlesssocialsharing"><div class="scriptlesssocialsharing-buttons"><a class="button twitter" target="_blank" href="https://twitter.com/intent/tweet?text=Spring%20Dependency%20Injection&amp;url=https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection&amp;via=JournalDev&amp;related=JournalDev" rel="noopener"><span class="sss-name">Twitter</span></a><a class="button facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection" rel="noopener"><span class="sss-name">Facebook</span></a><a class="button linkedin" target="_blank" href="https://www.linkedin.com/shareArticle?mini=1&amp;url=https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection&amp;title=Spring%20Dependency%20Injection&amp;source=https://www.journaldev.com" rel="noopener"><span class="sss-name">Linkedin</span></a><a class="button email" href="mailto:?body=I%20read%20this%20post%20and%20wanted%20to%20share%20it%20with%20you.%20Here%27s%20the%20link:%20https%3A%2F%2Fwww.journaldev.com%2F2410%2Fspring-dependency-injection&amp;subject=A%20post%20worth%20sharing:%20Spring%20Dependency%20Injection" rel="noopener"><span class="sss-name">Email</span></a></div></div><div class="prev-next-navigation"><a href="https://www.journaldev.com/2433/spring-mvc-tutorial" rel="next"><div class="next"><span class="next_icon">Next&nbsp;</span><br> <span class="pagi_content">Spring MVC Tutorial</span></div></a></div>
+		<!-- .prev-next-navigation --><section class="author-box" itemprop="author" itemscope="" itemtype="https://schema.org/Person"><img alt="" src="./Spring Dependency Injection - JournalDev_files/8087ef00af2610b870ada12392286695.jpeg" srcset="https://secure.gravatar.com/avatar/8087ef00af2610b870ada12392286695?s=240&amp;d=blank&amp;r=g 2x" class="avatar avatar-120 photo" height="120" width="120"><h4 class="author-box-title">About <span itemprop="name">Pankaj</span></h4><div class="author-box-content" itemprop="description"><p>If you have come this far, it means that you liked what you are reading. Why not reach little more and connect with me directly on <a href="https://plus.google.com/118104420597648001532/posts?rel=author"><strong>Google Plus</strong></a>, <a href="https://www.facebook.com/journaldev"><strong>Facebook</strong></a> or <a href="https://twitter.com/JournalDev"><strong>Twitter</strong></a>. I would love to hear your thoughts and opinions on my articles directly.</p>
+<p>Recently I started creating video tutorials too, so do check out my videos on <a href="https://www.youtube.com/user/JournalDev"><strong>Youtube</strong></a>.</p>
+</div></section></div><footer class="entry-footer"><p class="entry-meta"><span class="entry-categories">Filed Under: <a href="https://www.journaldev.com/spring" rel="category tag">Spring</a></span> </p></footer></article><div class="after-entry">
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget7-quick-adsense-3" class="widget widget_adswidget7-quick-adsense"><div class="widget-wrap"><!-- 728x90/970x90/970x250/320x50 -->
+<div id="waldo-tag-2281" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2281'); });</script></div></div></section>
+</div><div class="adjacent-entry-pagination pagination"><div class="pagination-previous alignleft"></div><div class="pagination-next alignright"><a href="https://www.journaldev.com/2433/spring-mvc-tutorial" rel="next">Spring MVC Tutorial »</a></div></div><div class="entry-comments" id="comments"><h3>Comments</h3><ol class="comment-list">
+	<li class="comment even thread-even depth-1" id="comment-44670">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Daniel Grindstaff</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-10-01T19:39:39+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44670" class="comment-time-link" itemprop="url">October 1, 2018 at 7:39 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hello!<br>
+I have downloaded the project and created it in eclipse and all the maven repository dependencies have been resolved except for org.junit.  The jar actually shows up under the Maven Dependencies folder but it is ‘grayed out’.  Also, the MyApplicationTest.java file has the exception that it cannot find org.junit.  Any ideas?<br>
+Thanks!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44670" onclick="return addComment.moveForm( &quot;comment-44670&quot;, &quot;44670&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Daniel Grindstaff">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-44673">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-10-01T22:06:19+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44673" class="comment-time-link" itemprop="url">October 1, 2018 at 10:06 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Add it to your pom.xml files manually. That should solve it by downloading the jar for the project.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44673" onclick="return addComment.moveForm( &quot;comment-44673&quot;, &quot;44673&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-44476">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Raj Gopal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-09-15T06:11:19+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44476" class="comment-time-link" itemprop="url">September 15, 2018 at 6:11 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi , Pankaj here is another way to test your application by Mockito framework .</p>
+<p>public class MyApplicationTest {<br>
+@Test<br>
+public void test() {<br>
+MyApplication app =new MyApplication app();<br>
+MessageService mockito= mock(MessageService.class);<br>
+when(mockito.sendMessage(“Hi Pankaj”, “pankaj@abc.com”)).thenReturn(true);<br>
+app.setService(mockito);<br>
+Assert.assertTrue(app.processMessage(“Hi Pankaj”, “pankaj@abc.com”));<br>
+}<br>
+}</p>
+<p>pom.xml modification</p>
+<p>            org.mockito<br>
+            mockito-core<br>
+            2.0.73-beta</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44476" onclick="return addComment.moveForm( &quot;comment-44476&quot;, &quot;44476&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Raj Gopal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-44465">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">RajGopal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-09-13T09:55:02+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44465" class="comment-time-link" itemprop="url">September 13, 2018 at 9:55 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Can you also please provide the code for Spring Dependency Injection JUnit Test Case in for XML Based Configuration</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44465" onclick="return addComment.moveForm( &quot;comment-44465&quot;, &quot;44465&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to RajGopal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-44356">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">RajGopal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-31T23:04:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44356" class="comment-time-link" itemprop="url">August 31, 2018 at 11:04 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>In class DIConfiguration<br>
+EmailService() instance is returned . Please also return the instance of  TwitterService<br>
+and use @Qualifier annotation  to perform autowiring  .</p>
+<p>Qualifier annotation<br>
+<a href="https://dzone.com/articles/a-guide-to-spring-framework-annotations" rel="nofollow">https://dzone.com/articles/a-guide-to-spring-framework-annotations</a></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44356" onclick="return addComment.moveForm( &quot;comment-44356&quot;, &quot;44356&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to RajGopal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-44347">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Raj Gopal</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-31T08:50:59+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44347" class="comment-time-link" itemprop="url">August 31, 2018 at 8:50 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Super Explanation . Great tutorial .</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44347" onclick="return addComment.moveForm( &quot;comment-44347&quot;, &quot;44347&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Raj Gopal">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-44338">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Triet</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-30T06:39:57+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44338" class="comment-time-link" itemprop="url">August 30, 2018 at 6:39 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi, I’m using the annotation based configuration and what if I want to send message by Email then by Twitter?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44338" onclick="return addComment.moveForm( &quot;comment-44338&quot;, &quot;44338&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Triet">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-44272">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Dev</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-21T05:08:09+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44272" class="comment-time-link" itemprop="url">August 21, 2018 at 5:08 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>in Java based bean config when i create another bean for same service, using @Qualifier i avoided nounique bean exception. But When creating another bean for same service in xml based config, nounique bean exception is occured??<br>
+How avoid that exception?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44272" onclick="return addComment.moveForm( &quot;comment-44272&quot;, &quot;44272&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Dev">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-42966">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Pranali</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-16T22:09:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-42966" class="comment-time-link" itemprop="url">April 16, 2018 at 10:09 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>what is significance of @configuration. Even if i remove it from ApplConfig it is executed correctly.<br>
+and if my properties file has same keys and i write @PropertySource twice then which key will be fetched from both properties file.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-42966" onclick="return addComment.moveForm( &quot;comment-42966&quot;, &quot;42966&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pranali">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-43476">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-05-23T00:47:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43476" class="comment-time-link" itemprop="url">May 23, 2018 at 12:47 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Read this tutorial to understand why it’s better to use @Configuration annotation.</p>
+<p><a href="https://www.journaldev.com/21033/spring-configuration-annotation" rel="nofollow">https://www.journaldev.com/21033/spring-configuration-annotation</a></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43476" onclick="return addComment.moveForm( &quot;comment-43476&quot;, &quot;43476&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-42389">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ravella Baji</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-03-05T09:51:39+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-42389" class="comment-time-link" itemprop="url">March 5, 2018 at 9:51 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>gracias, amigo.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-42389" onclick="return addComment.moveForm( &quot;comment-42389&quot;, &quot;42389&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ravella Baji">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-40013">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ennahdi El Idrissi, Mohamed</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-11-21T07:04:15+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-40013" class="comment-time-link" itemprop="url">November 21, 2017 at 7:04 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,</p>
+<p>Why is DIConfiguration class capable of having only one @Bean method ?</p>
+<p>What should be done to invoke TwitterService? Do I have to create a distinct Configuration class?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-40013" onclick="return addComment.moveForm( &quot;comment-40013&quot;, &quot;40013&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ennahdi El Idrissi, Mohamed">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-39289">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ashok Singh</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-27T00:12:18+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39289" class="comment-time-link" itemprop="url">August 27, 2017 at 12:12 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,</p>
+<p>As this question has been asked by some one . Please can  you explain ? </p>
+<p>Thanks for nice explanation.<br>
+But in above DIConfiguration class, its kind of hardcoding and returning “return new EmailService(), which says always EmailService bean is getting injected over there.<br>
+For some scenarios, if I want to instantiate my component with TwitterService() how to do that again?<br>
+I meant.. few instances need to be injected with EmailService() and few instances need to be injected with TwitterService().<br>
+How to do that? Please explain.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39289" onclick="return addComment.moveForm( &quot;comment-39289&quot;, &quot;39289&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ashok Singh">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-39291">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-08-27T01:06:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39291" class="comment-time-link" itemprop="url">August 27, 2017 at 1:06 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>You can do that by injecting message service instance using XML file, create two different beans – one for Twitter and one for Email. Then use them as per your need.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39291" onclick="return addComment.moveForm( &quot;comment-39291&quot;, &quot;39291&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-3" id="comment-39468">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ashok Singh</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2017-09-17T10:38:07+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39468" class="comment-time-link" itemprop="url">September 17, 2017 at 10:38 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks  Pankaj</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-39468" onclick="return addComment.moveForm( &quot;comment-39468&quot;, &quot;39468&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ashok Singh">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt depth-2" id="comment-43186">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">chandu ujjina</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-04-25T23:35:40+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43186" class="comment-time-link" itemprop="url">April 25, 2018 at 11:35 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>You can instantiate both beans see the below code</p>
+<p>import org.springframework.beans.factory.annotation.Qualifier;<br>
+import org.springframework.context.annotation.Bean;<br>
+import org.springframework.context.annotation.ComponentScan;<br>
+import org.springframework.context.annotation.Configuration;</p>
+<p>import com.corepractice.Dao.MessageService;<br>
+import com.corepractice.Daoimpl.EmailService;<br>
+import com.corepractice.Daoimpl.TwitterService;</p>
+<p>@Configuration<br>
+@ComponentScan(“com.corepractice”)<br>
+public class DIConfiguration {</p>
+<p>	public DIConfiguration() {<br>
+		super();<br>
+		System.out.println(“Inside DIConfiguration Constructor::”);<br>
+	}</p>
+<p>	@Bean<br>
+	@Qualifier(“emailService”)<br>
+	public MessageService getEmailMessageService(){<br>
+		System.out.println(“Inside Bean declaration::”);<br>
+		return new EmailService();<br>
+	}<br>
+	@Bean<br>
+	@Qualifier(“twitterService”)<br>
+	public MessageService getTwitterMessageService(){<br>
+		System.out.println(“Inside Bean declaration::”);<br>
+		return new TwitterService();<br>
+	}<br>
+}</p>
+<p>import org.springframework.beans.factory.annotation.Qualifier;<br>
+import org.springframework.stereotype.Service;</p>
+<p>import com.corepractice.Dao.MessageService;<br>
+@Service<br>
+@Qualifier(“emailService”)<br>
+public class EmailService implements MessageService {</p>
+<p>	@Override<br>
+	public boolean sendMessage(String msg, String rec) {<br>
+		System.out.println(“Email Sent to “+rec+ ” with Message=”+msg);<br>
+		return true;<br>
+	}</p>
+<p>}</p>
+<p>import org.springframework.beans.factory.annotation.Qualifier;<br>
+import org.springframework.stereotype.Service;</p>
+<p>import com.corepractice.Dao.MessageService;<br>
+@Service<br>
+@Qualifier(“twitterService”)<br>
+public class TwitterService implements MessageService{</p>
+<p>	@Override<br>
+	public boolean sendMessage(String msg, String rec) {<br>
+		System.out.println(“Twitter message Sent to “+rec+ ” with Message=”+msg);<br>
+		return true;<br>
+	}</p>
+<p>}</p>
+<p>import org.springframework.context.annotation.AnnotationConfigApplicationContext;</p>
+<p>import com.corepractice.Dao.MessageService;<br>
+import com.corepractice.config.DIConfiguration;</p>
+<p>public class ClientApplication {<br>
+public static void main(String[] args) {<br>
+	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DIConfiguration.class);<br>
+	MessageService emailservice=(MessageService) context.getBean(“emailService”);<br>
+	emailservice.sendMessage(“Hi Pankaj”,”pankaj@abc.com”);</p>
+<p>	MessageService twitterService=(MessageService) context.getBean(“twitterService”);<br>
+	twitterService.sendMessage(“Hi Pankaj”,”pankaj@abc.com”);<br>
+	//close the context<br>
+	 context.close();<br>
+}<br>
+}</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43186" onclick="return addComment.moveForm( &quot;comment-43186&quot;, &quot;43186&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to chandu ujjina">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-3" id="comment-43445">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Jaydeep</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-05-19T11:38:03+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43445" class="comment-time-link" itemprop="url">May 19, 2018 at 11:38 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Thanks Man</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-43445" onclick="return addComment.moveForm( &quot;comment-43445&quot;, &quot;43445&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Jaydeep">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt depth-3" id="comment-44337">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Triet</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-30T06:19:43+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44337" class="comment-time-link" itemprop="url">August 30, 2018 at 6:19 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Your way works but then MyApplication class is no longer necessary?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44337" onclick="return addComment.moveForm( &quot;comment-44337&quot;, &quot;44337&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Triet">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even depth-3" id="comment-44339">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Triet</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2018-08-30T07:25:58+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44339" class="comment-time-link" itemprop="url">August 30, 2018 at 7:25 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Wait, then the MyApplication class was never used?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-44339" onclick="return addComment.moveForm( &quot;comment-44339&quot;, &quot;44339&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Triet">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-36702">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Anoop</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-10-26T19:24:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36702" class="comment-time-link" itemprop="url">October 26, 2016 at 7:24 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Awesome demo and explanation.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36702" onclick="return addComment.moveForm( &quot;comment-36702&quot;, &quot;36702&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Anoop">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-36599">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">RafalQA</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-10-16T07:35:29+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36599" class="comment-time-link" itemprop="url">October 16, 2016 at 7:35 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hello, I have some question. </p>
+<p>There is any another way to  use MyApplication  class with autowired without the:  “AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DIConfiguration.class);<br>
+		MyApplication app = context.getBean(MyApplication.class);” ???</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36599" onclick="return addComment.moveForm( &quot;comment-36599&quot;, &quot;36599&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to RafalQA">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-34147">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Kapil Verm</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-02-20T17:19:35+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34147" class="comment-time-link" itemprop="url">February 20, 2016 at 5:19 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice explanation. Thanks Pankaj!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34147" onclick="return addComment.moveForm( &quot;comment-34147&quot;, &quot;34147&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Kapil Verm">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-34130">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Prasanth Varada</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-02-17T20:52:21+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34130" class="comment-time-link" itemprop="url">February 17, 2016 at 8:52 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,</p>
+<p>Thanks for nice explanation.<br>
+But in above DIConfiguration class, its kind of hardcoding and returning “return new EmailService(), which says always EmailService bean is getting injected over there.<br>
+For some scenarios, if I want to instantiate my component with TwitterService() how to do that again?<br>
+I meant.. few instances need to be injected with EmailService() and few instances need to be injected with TwitterService().<br>
+How to do that? Please explain.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34130" onclick="return addComment.moveForm( &quot;comment-34130&quot;, &quot;34130&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Prasanth Varada">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-37089">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Márton P</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-12-21T06:45:12+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-37089" class="comment-time-link" itemprop="url">December 21, 2016 at 6:45 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I am also curious about this. To me the whole point of this setup seems to be about being able to swap beans on the fly, yet I haven’t got setService to work.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-37089" onclick="return addComment.moveForm( &quot;comment-37089&quot;, &quot;37089&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Márton P">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-34014">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">anonoumus</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-02-04T00:05:08+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34014" class="comment-time-link" itemprop="url">February 4, 2016 at 12:05 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice explanation</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-34014" onclick="return addComment.moveForm( &quot;comment-34014&quot;, &quot;34014&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to anonoumus">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-33962">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">John K Njue</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-01-27T03:04:30+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33962" class="comment-time-link" itemprop="url">January 27, 2016 at 3:04 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice and well articulated tutorial. will catch up with you on social media.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33962" onclick="return addComment.moveForm( &quot;comment-33962&quot;, &quot;33962&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to John K Njue">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-33942">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Venkatraman E K</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-01-24T06:26:43+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33942" class="comment-time-link" itemprop="url">January 24, 2016 at 6:26 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>While I was trying to implement the DI on annotation based. I couldn’t find the componentscan. Where i can get the Jar.<br>
+If I try to download your source code and try to compile the code. I’m coming across the following issue as:Exception in thread “main” org.springframework.beans.factory.NoSuchBeanDefinitionException: No unique bean of type [com.journaldev.spring.di.consumer.MyApplication] is defined: expected single bean but found 0:<br>
+Could you help us resolve on the above issues.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33942" onclick="return addComment.moveForm( &quot;comment-33942&quot;, &quot;33942&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Venkatraman E K">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-33470">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="http://www.javalschool.com/2015/10/dependency-injection-in-spring-di.html" class="comment-author-link" rel="external nofollow" itemprop="url">bala</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-11-01T01:46:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33470" class="comment-time-link" itemprop="url">November 1, 2015 at 1:46 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>very good article sir.nice demo thanks for sharing this article</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33470" onclick="return addComment.moveForm( &quot;comment-33470&quot;, &quot;33470&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to bala">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-33307">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">karablaxos</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-05T09:09:14+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33307" class="comment-time-link" itemprop="url">October 5, 2015 at 9:09 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi pankaj why if we remove the @ComponentScan anottation and try to configure  @Component(“MyApplication”) by xml component-scan is says that No bean named ‘MyApplication’ is defined?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33307" onclick="return addComment.moveForm( &quot;comment-33307&quot;, &quot;33307&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to karablaxos">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-33165">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Hernán</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-09-15T08:16:01+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33165" class="comment-time-link" itemprop="url">September 15, 2015 at 8:16 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi, i am sorry for my simple question, but i have done the tutorial and it works fine, except for the JUnit file at the end. Since it doesnt have a Main method, how am i run the tests ?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33165" onclick="return addComment.moveForm( &quot;comment-33165&quot;, &quot;33165&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Hernán">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-33313">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">BinhLe</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-06T04:40:09+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33313" class="comment-time-link" itemprop="url">October 6, 2015 at 4:40 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Hernán, you can run it by JUnit.<br>
+I’m sorry for my english. :))</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33313" onclick="return addComment.moveForm( &quot;comment-33313&quot;, &quot;33313&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to BinhLe">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-33314">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-10-06T04:42:35+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33314" class="comment-time-link" itemprop="url">October 6, 2015 at 4:42 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Run it as JUnit test in Eclipse.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33314" onclick="return addComment.moveForm( &quot;comment-33314&quot;, &quot;33314&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-33140">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Shashank</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-09-12T20:05:50+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33140" class="comment-time-link" itemprop="url">September 12, 2015 at 8:05 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,</p>
+<p>I am using mybatis with spring. I have an interface which is implemented in xml. There is no implementing class of the interface. The interface has methods like select,insert,delete, etc. I am getting the name of the mapper or interface from the database and then I need to execute the methods at runtime. It needs to be dynamic so I cant know the name of the interface or mapper beforehand. Any help would be great.</p>
+<p>Thanks.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33140" onclick="return addComment.moveForm( &quot;comment-33140&quot;, &quot;33140&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Shashank">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-33005">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">vamsi</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-08-19T08:19:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33005" class="comment-time-link" itemprop="url">August 19, 2015 at 8:19 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hiiii mr. pankaj,</p>
+<p>I have done console application with annotations am getting this exception  can please let me know what is this<br>
+Exception in thread “main” org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.sapmle.MyCommunication] is defined<br>
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.getBean(DefaultListableBeanFactory.java:318)<br>
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:985)<br>
+	at Test.main(Test.java:11)</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-33005" onclick="return addComment.moveForm( &quot;comment-33005&quot;, &quot;33005&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to vamsi">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-32929">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ram</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-08-08T11:10:00+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32929" class="comment-time-link" itemprop="url">August 8, 2015 at 11:10 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi This is nice demo.<br>
+I think if you look at it then its a kind of Strategy design pattern with Spring DI and with annotations.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32929" onclick="return addComment.moveForm( &quot;comment-32929&quot;, &quot;32929&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ram">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-32553">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Umesh Hemant Annegirikar</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-05-30T05:12:56+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32553" class="comment-time-link" itemprop="url">May 30, 2015 at 5:12 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I have got the following exception while using xml configuration<br>
+Exception in thread “main” java.lang.VerifyError: class org.springframework.expression.spel.SpelException overrides final method getPosition.()I<br>
+	at java.lang.ClassLoader.defineClass1(Native Method)<br>
+	at java.lang.ClassLoader.defineClass(Unknown Source)<br>
+	at java.security.SecureClassLoader.defineClass(Unknown Source)<br>
+	at java.net.URLClassLoader.defineClass(Unknown Source)<br>
+	at java.net.URLClassLoader.access$100(Unknown Source)<br>
+	at java.net.URLClassLoader$1.run(Unknown Source)<br>
+	at java.net.URLClassLoader$1.run(Unknown Source)<br>
+	at java.security.AccessController.doPrivileged(Native Method)<br>
+	at java.net.URLClassLoader.findClass(Unknown Source)<br>
+	at java.lang.ClassLoader.loadClass(Unknown Source)<br>
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)<br>
+	at java.lang.ClassLoader.loadClass(Unknown Source)<br>
+	at org.springframework.context.expression.StandardBeanExpressionResolver.(StandardBeanExpressionResolver.java:57)<br>
+	at org.springframework.context.support.AbstractApplicationContext.prepareBeanFactory(AbstractApplicationContext.java:441)<br>
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:352)<br>
+	at org.springframework.context.support.ClassPathXmlApplicationContext.(ClassPathXmlApplicationContext.java:139)<br>
+	at org.springframework.context.support.ClassPathXmlApplicationContext.(ClassPathXmlApplicationContext.java:83)<br>
+	at com.SpringDI.test.ClientXMLApplication.main(ClientXMLApplication.java:10)</p>
+<p>I have tried to debug it but i am not able to resolve it</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32553" onclick="return addComment.moveForm( &quot;comment-32553&quot;, &quot;32553&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Umesh Hemant Annegirikar">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-32350">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Nena007</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-05-01T13:25:45+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32350" class="comment-time-link" itemprop="url">May 1, 2015 at 1:25 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>In your annotated example, you haven’t mentioned how type collisions would be resolved.  Since you have two types of MessageService implementations, how would the Spring IoC container resolve which MessageService type (email or twitter) to inject?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32350" onclick="return addComment.moveForm( &quot;comment-32350&quot;, &quot;32350&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Nena007">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment odd alt depth-2" id="comment-36001">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Cuong Huy To</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2016-08-08T07:47:16+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36001" class="comment-time-link" itemprop="url">August 8, 2016 at 7:47 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>It is through the file DIConfiguration</p>
+<p>@Configuration<br>
+@ComponentScan(value={“com.journaldev.spring.di.consumer”})<br>
+public class DIConfiguration {</p>
+<p>	@Bean<br>
+	public MessageService getMessageService(){<br>
+		return new EmailService();<br>
+	}<br>
+}</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-36001" onclick="return addComment.moveForm( &quot;comment-36001&quot;, &quot;36001&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Cuong Huy To">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-31977">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">harikishore</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-03-16T03:37:49+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31977" class="comment-time-link" itemprop="url">March 16, 2015 at 3:37 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>nice articel…simply superb!!!</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31977" onclick="return addComment.moveForm( &quot;comment-31977&quot;, &quot;31977&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to harikishore">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-odd thread-alt depth-1" id="comment-31620">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Frank</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-02-02T20:53:55+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31620" class="comment-time-link" itemprop="url">February 2, 2015 at 8:53 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>What way do you recommend me for use spring 4? Anotattions or Xml?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31620" onclick="return addComment.moveForm( &quot;comment-31620&quot;, &quot;31620&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Frank">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment even depth-2" id="comment-32468">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">jery</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2015-05-19T22:12:11+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32468" class="comment-time-link" itemprop="url">May 19, 2015 at 10:12 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Xml is best way</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-32468" onclick="return addComment.moveForm( &quot;comment-32468&quot;, &quot;32468&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to jery">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-31251">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">trinsit.w</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-24T02:23:18+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31251" class="comment-time-link" itemprop="url">December 24, 2014 at 2:23 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Good article. Love it! Thank you very much.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31251" onclick="return addComment.moveForm( &quot;comment-31251&quot;, &quot;31251&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to trinsit.w">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-31181">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Bikash Mohapatra</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-18T23:43:38+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31181" class="comment-time-link" itemprop="url">December 18, 2014 at 11:43 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Very nice explanation and working fine.<br>
+Thanks..</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31181" onclick="return addComment.moveForm( &quot;comment-31181&quot;, &quot;31181&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Bikash Mohapatra">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-31158">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Andreas Papandreas</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-17T11:51:19+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31158" class="comment-time-link" itemprop="url">December 17, 2014 at 11:51 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Pankaj, you said that ‘Context objects are resource intensive, so we should close them when we are done with it’. What about WebApplicationContext, it is from org.springframework.web.context.support.WebApplicationContextUtils and do we neeed to close it since it does not have any close method?</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31158" onclick="return addComment.moveForm( &quot;comment-31158&quot;, &quot;31158&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Andreas Papandreas">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-31040">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ty Davis</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-04T19:29:42+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31040" class="comment-time-link" itemprop="url">December 4, 2014 at 7:29 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>This doesnt work at all. I wont be coming here anymore</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31040" onclick="return addComment.moveForm( &quot;comment-31040&quot;, &quot;31040&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ty Davis">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-31044">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-12-05T10:26:13+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31044" class="comment-time-link" itemprop="url">December 5, 2014 at 10:26 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Well it works for me and many others, see others comments too. If you are facing any issues, then check your settings and try to solve it.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-31044" onclick="return addComment.moveForm( &quot;comment-31044&quot;, &quot;31044&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-even depth-1" id="comment-29392">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Ismael</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-07-02T12:33:54+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29392" class="comment-time-link" itemprop="url">July 2, 2014 at 12:33 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>I think that the DIConfiguration.java is wrong on the “service” configuration. It says</p>
+<p>@Bean<br>
+    public MessageService getMessageService(){<br>
+        return new EmailService();<br>
+    }</p>
+<p>As java config uses the name of the method as id, it should be instead</p>
+<p>@Bean<br>
+    public MessageService service(){<br>
+        return new EmailService();<br>
+    }</p>
+<p>Then the MyApplication.java would have access to the service. </p>
+<p>On DIConfiguration.java you should decide if you need the TwitterService or EmailService.</p>
+<p>Unless I am missing something <img draggable="false" class="emoji" alt="🙂" src="./Spring Dependency Injection - JournalDev_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29392" onclick="return addComment.moveForm( &quot;comment-29392&quot;, &quot;29392&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Ismael">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor odd alt depth-2" id="comment-29396">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-07-02T20:20:43+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29396" class="comment-time-link" itemprop="url">July 2, 2014 at 8:20 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>You can choose any method name, that is the beauty of Spring framework and how it process @Bean and @Autowired annotations.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29396" onclick="return addComment.moveForm( &quot;comment-29396&quot;, &quot;29396&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-29167">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">mani</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-06-09T23:31:47+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29167" class="comment-time-link" itemprop="url">June 9, 2014 at 11:31 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>could use please explain @value annotation with an example using annotation based dependency injection</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29167" onclick="return addComment.moveForm( &quot;comment-29167&quot;, &quot;29167&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to mani">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-29099">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Atmrakash Sharma</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-06-04T01:33:06+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29099" class="comment-time-link" itemprop="url">June 4, 2014 at 1:33 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>nice article ..earlier i was usnig xml base configuration..but after reading this article i moved my p[roject to pannotaion based configuration file…thanks  (Y)</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-29099" onclick="return addComment.moveForm( &quot;comment-29099&quot;, &quot;29099&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Atmrakash Sharma">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-28880">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">suvendu</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-05-15T06:21:56+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28880" class="comment-time-link" itemprop="url">May 15, 2014 at 6:21 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>great explanation .. thank you.  <img draggable="false" class="emoji" alt="🙂" src="./Spring Dependency Injection - JournalDev_files/1f642.svg"></p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28880" onclick="return addComment.moveForm( &quot;comment-28880&quot;, &quot;28880&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to suvendu">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-28606">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">K KKumar</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-04-16T17:49:56+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28606" class="comment-time-link" itemprop="url">April 16, 2014 at 5:49 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Nice tutorial.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28606" onclick="return addComment.moveForm( &quot;comment-28606&quot;, &quot;28606&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to K KKumar">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment even thread-odd thread-alt depth-1" id="comment-28350">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Nandu</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-03-25T08:41:32+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28350" class="comment-time-link" itemprop="url">March 25, 2014 at 8:41 am</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Very nice explanation…I appreciate your efforts.<br>
+Before that I read all above theoretically but u explain it with an example which is easily understandable to any one.</p>
+<p>thanks</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28350" onclick="return addComment.moveForm( &quot;comment-28350&quot;, &quot;28350&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Nandu">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+
+	<li class="comment odd alt thread-even depth-1" id="comment-28326">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name">Adarsha</span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-03-20T13:59:37+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28326" class="comment-time-link" itemprop="url">March 20, 2014 at 1:59 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>Hi Pankaj,</p>
+<p>I am new for Spring , I followed your above code with some changes, But i am getting Error :</p>
+<p> IOException parsing XML document from class path resource [CoreSpring/src/main/resources/Test.xml]; nested exception is java.io.FileNotFoundException: class path resource [CoreSpring/src/main/resources/Test.xml] cannot be opened because it does not exist<br>
+	at org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(XmlBeanDefinitionReader.java:341).</p>
+<p>I placed Bean XML into /CoreSpring/src/main/resources/Test.xml path But still getting same error.But when i tried without Maven it working good.Please help me.</p>
+<p>Class Code :</p>
+<p>public class InjectSimple {</p>
+<p>	private String name;<br>
+	private int age;<br>
+	private int height;<br>
+	private float ageInSeconds;<br>
+	private boolean programmer;</p>
+<p>	public static void main(String a[])<br>
+	{</p>
+<p>		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(<br>
+                “/CoreSpring/src/main/resources/Test.xml”);</p>
+<p>	      InjectSimple simple=(InjectSimple) context.getBean(“sample”);<br>
+	      System.out.println(simple);</p>
+<p>	}</p>
+<p>//Setter and Getter Methods.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28326" onclick="return addComment.moveForm( &quot;comment-28326&quot;, &quot;28326&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Adarsha">Reply</a></div>
+		
+	</article>
+	<ul class="children">
+
+	<li class="comment byuser comment-author-pankaj bypostauthor even depth-2" id="comment-28329">
+	<article itemprop="comment" itemscope="" itemtype="https://schema.org/Comment">
+
+		
+		<header class="comment-header">
+			<p class="comment-author" itemprop="author" itemscope="" itemtype="https://schema.org/Person">
+				<span itemprop="name"><a href="https://www.journaldev.com/" class="comment-author-link" rel="external nofollow" itemprop="url">Pankaj</a></span> <span class="says">says</span>			</p>
+
+			<p class="comment-meta"><time class="comment-time" datetime="2014-03-20T18:27:16+00:00" itemprop="datePublished"><a href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28329" class="comment-time-link" itemprop="url">March 20, 2014 at 6:27 pm</a></time></p>		</header>
+
+		<div class="comment-content" itemprop="text">
+			
+			<p>src/main/resources are already defined as source path, so you need to specify only the file name “Test.xml”. For confirmation, export as WAR and then unzip it to see the file location.</p>
+		</div>
+
+		<div class="comment-reply"><a rel="nofollow" class="comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#comment-28329" onclick="return addComment.moveForm( &quot;comment-28329&quot;, &quot;28329&quot;, &quot;respond&quot;, &quot;2410&quot; )" aria-label="Reply to Pankaj">Reply</a></div>
+		
+	</article>
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ol></div>	<div class="comment-policy-box">
+		<p class="comment-policy"><small><strong>Comment Policy:</strong>Please submit comments to add value to the post. Comments like "Thank You" and "Awesome Post" will be not published. If you want to post code then wrap them inside &lt;pre&gt; tags. For example <strong>&lt;pre&gt;class Foo { }&lt;/pre&gt;</strong>.<br>If you want to post XML content, then please escape &lt; with &amp;lt; and &gt; with &amp;gt; otherwise they will not be shown properly.</small></p>
+	</div>
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.journaldev.com/2410/spring-dependency-injection#respond" style="display:none;">Cancel reply</a></small></h3>			<form action="https://www.journaldev.com/wp-comments-post.php" method="post" id="commentform" class="comment-form anti-spam-form-processed" novalidate="">
+				<p class="comment-notes"><span id="email-notes">Your email address will not be published.</span> Required fields are marked <span class="required">*</span></p><p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="comment-form-author"><label for="author">Name <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" required="required"></p>
+<p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" required="required"></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Post Comment"> <input type="hidden" name="comment_post_ID" value="2410" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+</p>
+<!-- Anti-spam plugin v.5.2 wordpress.org/plugins/anti-spam/ -->
+		<p class="antispam-group antispam-group-q" style="clear: both; display: none;">
+			<label>Current ye@r <span class="required">*</span></label>
+			<input type="hidden" name="antspm-a" class="antispam-control antispam-control-a" value="2018">
+			<input type="text" name="antspm-q" class="antispam-control antispam-control-q" value="5.2" autocomplete="off">
+		</p>
+		<p class="antispam-group antispam-group-e" style="display: none;">
+			<label>Leave this field empty</label>
+			<input type="text" name="antspm-e-email-url-website" class="antispam-control antispam-control-e" value="" autocomplete="off">
+		</p>
+			<input type="hidden" name="antspm-d" class="antispam-control antispam-control-d" value="2018"></form>
+			</div><!-- #respond -->
+	</main><aside class="sidebar sidebar-primary widget-area q2w3-fixed-widget-container" role="complementary" aria-label="Primary Sidebar" itemscope="" itemtype="https://schema.org/WPSideBar" style="height: 2700px;"><section id="search-3" class="widget widget_search"><div class="widget-wrap"><div id="ajaxsearchlite1" class="wpdreams_asl_container asl_w asl_m asl_m_1">
+<div class="probox">
+
+    
+    <div class="promagnifier">
+                <div class="innericon">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <path id="magnifier-2-icon" d="M460.355,421.59L353.844,315.078c20.041-27.553,31.885-61.437,31.885-98.037
+                    C385.729,124.934,310.793,50,218.686,50C126.58,50,51.645,124.934,51.645,217.041c0,92.106,74.936,167.041,167.041,167.041
+                    c34.912,0,67.352-10.773,94.184-29.158L419.945,462L460.355,421.59z M100.631,217.041c0-65.096,52.959-118.056,118.055-118.056
+                    c65.098,0,118.057,52.959,118.057,118.056c0,65.096-52.959,118.056-118.057,118.056C153.59,335.097,100.631,282.137,100.631,217.041
+                    z"></path>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class="prosettings" style="display:none;" data-opened="0">
+                <div class="innericon">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <polygon id="arrow-25-icon" transform="rotate(90 256 256)" points="142.332,104.886 197.48,50 402.5,256 197.48,462 142.332,407.113 292.727,256 "></polygon>
+            </svg>
+        </div>
+    </div>
+
+    
+    
+    <div class="proinput">
+        <form autocomplete="off" aria-label="Ajax search form">
+            <input aria-label="Search input" type="search" class="orig" name="phrase" placeholder="Instantly Search Tutorials..." value="" autocomplete="off">
+            <input aria-label="Autocomplete input, do not use this" type="text" class="autocomplete" name="phrase" value="" autocomplete="off">
+            <span class="loading"></span>
+            <input type="submit" value="Start search" style="width:0; height: 0; visibility: hidden;">
+        </form>
+    </div>
+
+    
+    
+    <div class="proloading">
+
+        <div class="asl_loader"><div class="asl_loader-inner asl_simple-circle"></div></div>
+
+            </div>
+
+            <div class="proclose">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+            <polygon id="x-mark-icon" points="438.393,374.595 319.757,255.977 438.378,137.348 374.595,73.607 255.995,192.225 137.375,73.622 73.607,137.352 192.246,255.983 73.622,374.625 137.352,438.393 256.002,319.734 374.652,438.378 "></polygon>
+        </svg>
+        </div>
+    
+    
+</div>
+</div>
+
+
+
+
+
+
+    <div id="asl_hidden_data">
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="aslblur">
+                <fegaussianblur in="SourceGraphic" stdDeviation="4"></fegaussianblur>
+            </filter>
+        </svg>
+        <svg style="position:absolute" height="0" width="0">
+            <filter id="no_aslblur"></filter>
+        </svg>
+
+    </div>
+
+<div class="asl_init_data wpdreams_asl_data_ct" style="display:none !important;" id="asl_init_id_1" data-asldata="ew0KICAgICJob21ldXJsIjogImh0dHBzOi8vd3d3LmpvdXJuYWxkZXYuY29tLyIsDQogICAgInJlc3VsdHN0eXBlIjogInZlcnRpY2FsIiwNCiAgICAicmVzdWx0c3Bvc2l0aW9uIjogImhvdmVyIiwNCiAgICAiaXRlbXNjb3VudCI6IDQsDQogICAgImltYWdld2lkdGgiOiA3MCwNCiAgICAiaW1hZ2VoZWlnaHQiOiA3MCwNCiAgICAicmVzdWx0aXRlbWhlaWdodCI6ICI3MHB4IiwNCiAgICAic2hvd2F1dGhvciI6IDAsDQogICAgInNob3dkYXRlIjogMCwNCiAgICAic2hvd2Rlc2NyaXB0aW9uIjogMCwNCiAgICAiY2hhcmNvdW50IjogIDMsDQogICAgImRlZmF1bHRJbWFnZSI6ICJodHRwczovL3d3dy5qb3VybmFsZGV2LmNvbS93cC1jb250ZW50L3VwbG9hZHMvMjAxOC8xMC83MHg3MC5wbmciLA0KICAgICJoaWdobGlnaHQiOiAwLA0KICAgICJoaWdobGlnaHR3aG9sZXdvcmRzIjogMSwNCiAgICAic2Nyb2xsVG9SZXN1bHRzIjogMCwNCiAgICAicmVzdWx0YXJlYWNsaWNrYWJsZSI6IDEsDQogICAgImF1dG9jb21wbGV0ZSI6IHsNCiAgICAgICAgImVuYWJsZWQiIDogMSwNCiAgICAgICAgImxhbmciIDogImVuIg0KICAgIH0sDQogICAgInRyaWdnZXJvbnR5cGUiOiAxLA0KICAgICJ0cmlnZ2VyX29uX2NsaWNrIjogMCwNCiAgICAidHJpZ2dlcl9vbl9mYWNldF9jaGFuZ2UiOiAxLA0KICAgICJzZXR0aW5nc2ltYWdlcG9zIjogInJpZ2h0IiwNCiAgICAiaHJlc3VsdGFuaW1hdGlvbiI6ICJmeC1ub25lIiwNCiAgICAidnJlc3VsdGFuaW1hdGlvbiI6ICJmeC1ub25lIiwNCiAgICAiaHJlc3VsdGhpZGVkZXNjIjogIjEiLA0KICAgICJwcmVzY29udGFpbmVyaGVpZ2h0IjogIjQwMHB4IiwNCiAgICAicHNob3dzdWJ0aXRsZSI6ICIwIiwNCiAgICAicHNob3dkZXNjIjogIjEiLA0KICAgICJjbG9zZU9uRG9jQ2xpY2siOiAxLA0KICAgICJpaWZOb0ltYWdlIjogImRlc2NyaXB0aW9uIiwNCiAgICAiaWlSb3dzIjogMiwNCiAgICAiaWl0ZW1zV2lkdGgiOiAyMDAsDQogICAgImlpdGVtc0hlaWdodCI6IDIwMCwNCiAgICAiaWlzaG93T3ZlcmxheSI6IDEsDQogICAgImlpYmx1ck92ZXJsYXkiOiAxLA0KICAgICJpaWhpZGVDb250ZW50IjogMSwNCiAgICAiaWlhbmltYXRpb24iOiAiMSIsDQogICAgImFuYWx5dGljcyI6IDAsDQogICAgImFuYWx5dGljc1N0cmluZyI6ICIiLA0KICAgICJyZWRpcmVjdG9uY2xpY2siOiAxLA0KICAgICJyZWRpcmVjdENsaWNrVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RDbGlja0xvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3Rfb25fZW50ZXIiOiAxLA0KICAgICJyZWRpcmVjdEVudGVyVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RFbnRlckxvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3RfdXJsIjogIj9zPXtwaHJhc2V9IiwNCiAgICAib3ZlcnJpZGV3cGRlZmF1bHQiOiAwLA0KICAgICJvdmVycmlkZV9tZXRob2QiOiAiZ2V0Ig0KfQ0K"></div>
+</div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget6-quick-adsense-2" class="widget widget_adswidget6-quick-adsense"><div class="widget-wrap"><!-- /8491498/journaldev_video -->
+<div id="div-gpt-ad-1539114023134-0">
+<script>
+googletag.cmd.push(function() { googletag.display('div-gpt-ad-1539114023134-0'); });
+</script>
+</div></div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget9-quick-adsense-3" class="widget widget_adswidget9-quick-adsense"><div class="widget-wrap"><!-- 300x250/300x600/160x600 -->
+<div id="waldo-tag-2282" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2282'); });</script></div></div></section>
+<section id="text-4" class="widget widget_text"><div class="widget-wrap"><h4 class="widget-title widgettitle">Spring Framework</h4>
+			<div class="textwidget"><h3><a href="https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial" target="_blank" rel="noopener">Spring Tutorial</a></h3>
+<h4>Spring Core</h4>
+<ol>
+<li><a href="https://www.journaldev.com/16922/spring-framework" target="_blank" rel="noopener">Spring Framework</a></li>
+<li><a href="https://www.journaldev.com/2410/spring-dependency-injection" target="_blank" rel="noopener">Spring Dependency Injection</a></li>
+<li><a href="https://www.journaldev.com/2461/spring-ioc-bean-example-tutorial" target="_blank" rel="noopener">Spring IoC and Bean</a></li>
+<li><a href="https://www.journaldev.com/2637/spring-bean-life-cycle" target="_blank" rel="noopener">Spring Bean Life Cycle</a></li>
+<li><a href="https://www.journaldev.com/2552/spring-rest-example-tutorial-spring-restful-web-services" target="_blank" rel="noopener">Spring REST</a></li>
+<li><a href="https://www.journaldev.com/8934/spring-rest-xml-and-json-example" target="_blank" rel="noopener">Spring REST XML</a></li>
+<li><a href="https://www.journaldev.com/17096/spring-resttemplate-example" target="_blank" rel="noopener">Spring RestTemplate</a></li>
+<li><a href="https://www.journaldev.com/2583/spring-aop-example-tutorial-aspect-advice-pointcut-joinpoint-annotations" target="_blank" rel="noopener">Spring AOP</a></li>
+<li><a href="https://www.journaldev.com/7801/spring-aop-method-profiling" target="_blank" rel="noopener">Spring AOP Method Profiling</a></li>
+<li><a href="https://www.journaldev.com/16966/spring-annotations" target="_blank" rel="noopener">Spring Annotations</a></li>
+<li><a href="https://www.journaldev.com/2623/spring-autowired-annotation" target="_blank" rel="noopener">Spring @Autowired</a></li>
+<li><a href="https://www.journaldev.com/3358/spring-requestmapping-requestparam-pathvariable-example" target="_blank" rel="noopener">Spring @RequestMapping</a></li>
+</ol>
+<h4>Spring MVC</h4>
+<ol>
+<li><a href="https://www.journaldev.com/14476/spring-mvc-example" target="_blank" rel="noopener">Spring MVC Example</a></li>
+<li><a href="https://www.journaldev.com/2433/spring-mvc-tutorial" target="_blank" rel="noopener">Spring MVC Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2651/spring-mvc-exception-handling-controlleradvice-exceptionhandler-handlerexceptionresolver" target="_blank" rel="noopener">Spring MVC Exception Handling</a></li>
+<li><a href="https://www.journaldev.com/2668/spring-validation-example-mvc-validator" target="_blank" rel="noopener">Spring MVC Validator</a></li>
+<li><a href="https://www.journaldev.com/2676/spring-mvc-interceptor-example-handlerinterceptor-handlerinterceptoradapter" target="_blank" rel="noopener">Spring MVC Intercepter</a></li>
+<li><a href="https://www.journaldev.com/2573/spring-mvc-file-upload-example-single-multiple-files" target="_blank" rel="noopener">Spring MVC File Upload</a></li>
+<li><a href="https://www.journaldev.com/2610/spring-mvc-internationalization-i18n-and-localization-l10n-example" target="_blank" rel="noopener">Spring MVC i18n</a></li>
+<li><a href="https://www.journaldev.com/3531/spring-mvc-hibernate-mysql-integration-crud-example-tutorial" target="_blank" rel="noopener">Spring MVC Hibernate MqSQL</a></li>
+</ol>
+<h4>Spring ORM</h4>
+<ol>
+<li><a href="https://www.journaldev.com/7655/spring-orm-example-jpa-hibernate-transaction" target="_blank" rel="noopener">Spring ORM</a></li>
+<li><a href="https://www.journaldev.com/7772/spring-orm-example-with-jpa-hibernate-aop-transactions" target="_blank" rel="noopener">Spring ORM JPA</a></li>
+<li><a href="https://www.journaldev.com/17034/spring-data-jpa" target="_blank" rel="noopener">Spring Data JPA</a></li>
+<li><a href="https://www.journaldev.com/2603/spring-transaction-management-jdbc-example" target="_blank" rel="noopener">Spring Transaction</a></li>
+<li><a href="https://www.journaldev.com/17053/spring-jdbctemplate-example" target="_blank" rel="noopener">Spring JdbcTemplate</a></li>
+</ol>
+<h4>Spring Security</h4>
+<ol>
+<li><a href="https://www.journaldev.com/8669/introduction-to-spring-4-security" target="_blank" rel="noopener">Spring Security Overview</a></li>
+<li><a href="https://www.journaldev.com/2715/spring-security-example-tutorial" target="_blank" rel="noopener">Spring Security Example Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2736/spring-security-example-userdetailsservice" target="_blank" rel="noopener">Spring Security UserDetailsService</a></li>
+<li><a href="https://www.journaldev.com/8718/spring-4-security-mvc-login-logout-example" target="_blank" rel="noopener">Spring MVC Login Logout</a></li>
+<li><a href="https://www.journaldev.com/8748/spring-4-mvc-security-managing-roles-example" target="_blank" rel="noopener">Spring Security Roles</a></li>
+</ol>
+<h4>Spring Boot</h4>
+<ol>
+<li><a href="https://www.journaldev.com/7969/spring-boot-tutorial" target="_blank" rel="noopener">Spring Boot Tutorial</a></li>
+<li><a href="https://www.journaldev.com/7989/key-components-and-internals-of-spring-boot-framework" target="_blank" rel="noopener">Spring Boot Components</a></li>
+<li><a href="https://www.journaldev.com/8195/spring-boot-cli-setup-and-helloworld-example" target="_blank" rel="noopener">Spring Boot CLI Hello World</a></li>
+<li><a href="https://www.journaldev.com/8225/spring-boot-initilizr-web-interface" target="_blank" rel="noopener">Spring Boot Initilizr Web</a></li>
+<li><a href="https://www.journaldev.com/8596/spring-boot-initilizr-with-ides-or-ide-plugins" target="_blank" rel="noopener">Spring Boot Initilizr IDE</a></li>
+<li><a href="https://www.journaldev.com/8609/spring-boot-initilizr-with-spring-boot-cli" target="_blank" rel="noopener">Spring Boot Initilizr CLI</a></li>
+<li><a href="https://www.journaldev.com/8650/spring-boot-initilizr-with-thirdparty-tools" target="_blank" rel="noopener">Spring Boot Initilizr Tools</a></li>
+<li><a href="https://www.journaldev.com/18156/spring-boot-mongodb" target="_blank" rel="noopener">Spring Boot MongoDB</a></li>
+<li><a href="https://www.journaldev.com/18141/spring-boot-redis-cache" target="_blank" rel="noopener">Spring Boot Redis Cache</a></li>
+<li><a href="https://www.journaldev.com/8611/spring-boot-interview-questions" target="_blank" rel="noopener">Spring Boot Interview Questions</a></li>
+</ol>
+<h4>Spring Batch</h4>
+<ol>
+<li><a href="https://www.journaldev.com/17119/spring-batch" target="_blank" rel="noopener">Spring Batch</a></li>
+<li><a href="https://www.journaldev.com/17157/spring-batch-example" target="_blank" rel="noopener">Spring Batch Example</a></li>
+</ol>
+<h4>Spring AMQP</h4>
+<ol>
+<li><a href="https://www.journaldev.com/11643/spring-amqp" target="_blank" rel="noopener">Spring AMQP</a></li>
+<li><a href="https://www.journaldev.com/11655/spring-rabbitmq" target="_blank" rel="noopener">Spring RabbitMQ</a></li>
+<li><a href="https://www.journaldev.com/11713/spring-amqp-rabbitmq-example" target="_blank" rel="noopener">Spring AMQP RabbitMQ</a></li>
+<li><a href="https://www.journaldev.com/11766/apache-activemq" target="_blank" rel="noopener">Apache ActiveMQ</a></li>
+<li><a href="https://www.journaldev.com/12697/spring-amqp-activemq-tutorial" target="_blank" rel="noopener">Spring ActiveMQ Tutorial</a></li>
+<li><a href="https://www.journaldev.com/12743/spring-activemq-example" target="_blank" rel="noopener">Spring ActiveMQ Example</a></li>
+</ol>
+<h4>Spring Integrations</h4>
+<ol>
+<li><a href="https://www.journaldev.com/2593/spring-jdbc-example" target="_blank" rel="noopener">Spring JDBC</a></li>
+<li><a href="https://www.journaldev.com/2597/spring-datasource-jndi-with-tomcat-example" target="_blank" rel="noopener">Spring DataSource JNDI</a></li>
+<li><a href="https://www.journaldev.com/3524/spring-hibernate-integration-example-tutorial" target="_blank" rel="noopener">Spring Hibernate</a></li>
+<li><a href="https://www.journaldev.com/4058/primefaces-spring-4-with-jpa-hibernate-eclipselink-example-tutorial" target="_blank" rel="noopener">Spring Primefaces JPA</a></li>
+<li><a href="https://www.journaldev.com/4061/primefaces-spring-eclipselink-nosql-mongodb-oracle-nosql-db" target="_blank" rel="noopener">Spring Primefaces MongoDB</a></li>
+<li><a href="https://www.journaldev.com/4096/primefaces-spring-hibernate-integration-example-tutorial" target="_blank" rel="noopener">Spring Primefaces Hibernate</a></li>
+<li><a href="https://www.journaldev.com/4260/primefaces-hibernate-and-springroo-integration" target="_blank" rel="noopener">SpringRoo Primefaces Hibernate</a></li>
+<li><a href="https://www.journaldev.com/7112/jsf-spring-integration-example-tutorial" target="_blank" rel="noopener">Spring JSF</a></li>
+<li><a href="https://www.journaldev.com/7122/jsf-spring-hibernate-integration-example-tutorial" target="_blank" rel="noopener">Spring JDF Hibernate</a></li>
+</ol>
+<h4>Miscellaneous</h4>
+<ol>
+<li><a href="https://www.journaldev.com/4144/spring-data-mongodb-example" target="_blank" rel="noopener">Spring Data MongoDB</a></li>
+<li><a href="https://www.journaldev.com/2696/spring-interview-questions-and-answers" target="_blank" rel="noopener">Spring Interview Questions</a></li>
+</ol>
+</div>
+		</div></section>
+<section id="text-11" class="widget widget_text"><div class="widget-wrap"><h4 class="widget-title widgettitle">Recommended Tutorials</h4>
+			<div class="textwidget"><h4>Java Tutorials</h4>
+<ul>
+<li><a href="https://www.journaldev.com/942/java-io-tutorial" target="_blank">Java IO</a></li>
+<li><a href="https://www.journaldev.com/634/regular-expression-in-java-regex-example" target="_blank">Java Regular Expressions</a></li>
+<li><a href="https://www.journaldev.com/1079/multithreading-in-java" target="_blank">Multithreading in Java</a></li>
+<li><a href="https://www.journaldev.com/977/java-logging-api-tutorial-examples-logger-levels-handlers-formatters-filters" target="_blank">Java Logging</a></li>
+<li><a href="https://www.journaldev.com/721/java-annotations-example-tutorial" target="_blank">Java Annotations</a></li>
+<li><a href="https://www.journaldev.com/1240/java-xml-tutorial" target="_blank">Java XML</a></li>
+<li><a href="https://www.journaldev.com/1260/collections-in-java-tutorial" target="_blank">Collections in Java</a></li>
+<li><a href="https://www.journaldev.com/1663/java-generics-example-method-class-interface" target="_blank">Java Generics</a></li>
+<li><a href="https://www.journaldev.com/1696/exception-handling-in-java" target="_blank">Exception Handling in Java</a></li>
+<li><a href="https://www.journaldev.com/1789/java-reflection-example-tutorial" target="_blank">Java Reflection</a></li>
+<li><a href="https://www.journaldev.com/1827/java-design-patterns-example-tutorial" target="_blank">Java Design Patterns</a></li>
+<li><a href="https://www.journaldev.com/2681/jdbc-tutorial-with-example-projects-datasource-jndi-and-spring-integration" target="_blank">JDBC Tutorial</a></li>
+<h4>Java EE Tutorials</h4>
+<li><a href="https://www.journaldev.com/2114/servlet-jsp-tutorial" target="_blank">Servlet JSP Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2310/struts2-tutorial-with-example-projects" target="_blank">Struts2 Tutorial</a></li>
+<li><a href="https://www.journaldev.com/2888/spring-tutorial-spring-core-tutorial" target="_blank">Spring Tutorial</a></li>
+<li><a href="https://www.journaldev.com/3793/hibernate-tutorial" target="_blank">Hibernate Tutorial</a></li>
+<li><a href="https://www.journaldev.com/5516/primefaces-tutorial-with-example-projects" target="_blank">Primefaces Tutorial</a></li>
+<li><a href="https://www.journaldev.com/255/axis2-web-services-tutorial" target="_blank">Apache Axis 2</a></li>
+<li><a href="https://www.journaldev.com/498/jax-rs-restful-web-service-using-jersey-example-tutorial" target="_blank">JAX-RS</a></li>
+<li><a href="https://www.journaldev.com/1117/memcached-tutorial" target="_blank">Memcached Tutorial</a></li>
+</ul>
+</div>
+		</div></section>
+
+<!-- Quick Adsense Wordpress Plugin: http://quickadsense.com/ -->
+<section id="adswidget10-quick-adsense-2_clone" class="widget widget_adswidget10-quick-adsense q2w3-widget-clone-sidebar" style="top: 10px; width: 359px; height: 0px; visibility: hidden;"></section><section id="adswidget10-quick-adsense-2" class="widget widget_adswidget10-quick-adsense" style="top: 10px; width: 359px; position: fixed;"><div class="widget-wrap"><!-- 300x250/300x600/160x600 -->
+<div id="waldo-tag-2283" data-processed="true"><script type="text/javascript">googletag.cmd.push(function() { googletag.display('waldo-tag-2283'); });</script></div></div></section>
+</aside></div></div><footer class="site-footer" itemscope="" itemtype="https://schema.org/WPFooter"><div class="wrap"><p>©&nbsp;2018 · <a href="https://www.journaldev.com/privacy-policy">Privacy Policy</a> · Powered by <a href="https://wordpress.org/" title="WordPress">WordPress</a></p></div></footer></div>
+<script type="text/javascript">
+    function _dmBootstrap(file) {
+        var _dma = document.createElement('script');
+        _dma.type = 'text/javascript';
+        _dma.async = true;
+        _dma.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + file;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(_dma);
+    }
+    function _dmFollowup(file) { if (typeof DMAds === 'undefined') _dmBootstrap('cdn2.DeveloperMedia.com/a.min.js'); }
+    (function () { _dmBootstrap('cdn1.DeveloperMedia.com/a.min.js'); setTimeout(_dmFollowup, 2000); })();
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Spring Dependency Injection - JournalDev_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-12171637-4', { 'anonymize_ip': true });
+</script>
+	<script src="./Spring Dependency Injection - JournalDev_files/highlight.min.js.download"></script>
+	<script>
+		jQuery(document).ready(function() {
+		  jQuery('pre code').each(function(i, block) {
+			hljs.highlightBlock(block);
+			$(".entry-content pre").show();
+		  });
+		  	
+			jQuery('.entry-content pre code').mouseenter(function(e){
+				var t = jQuery(this);
+					t.children(".re_clip-board").slideDown(100);
+				jQuery(e.target).mouseleave(function(){
+					t.children(".re_clip-board").slideUp(100);
+					
+					setTimeout(function() {
+						t.children(".re_clip-board").text("Copy");
+					}, 100);
+					
+				});
+			});
+			
+			jQuery('.entry-content pre code .re_clip-board').click(function(e){
+				re_copyToClipboard(jQuery(this));
+				$(this).text("Copied!");
+				$(this).css("width", "85px");
+			});
+		});
+		
+function re_copyToClipboard(element) {
+	var elements = element.parent();
+  	var $temp = $("<textarea>");
+  	$("body").append($temp);
+	var text = $(elements).text().replace(/Copy/g, "");
+  	$temp.val(text).select();
+  	document.execCommand("copy");
+  	$temp.remove();
+}
+
+/*Starting expand widget jquery codes */
+var rotation = 0;
+jQuery.fn.plus_rotate = function(degrees) {
+    $(this).css({"-webkit-transform" : "rotate("+ degrees +"deg)",
+                 "-moz-transform" : "rotate("+ degrees +"deg)",
+                 "-ms-transform" : "rotate("+ degrees +"deg)",
+                 "transform" : "rotate("+ degrees +"deg)"});
+    return $(this);
+};
+
+$(document).ready(function(){
+  $(".expand_widget_title").click(function(){
+    if ( !$(this).parent().children("ul").is(":visible") ) {
+      rotation += 360;
+	  $(this).children(".widget_plus_icon").removeClass("zero_six_rotate");
+      $(this).children(".widget_plus_icon").addClass("tree_six_rotate");
+     $(this).parent().children("ul").slideDown(390);
+	 
+	 var t = $(this);
+	 setTimeout(function() {
+	 	t.children(".widget_plus_icon").removeClass("plus_icon");
+		t.children(".widget_plus_icon").addClass("minus_icon");
+	 }, 400);
+  } else {
+    rotation -= 360;
+     	$(this).children(".widget_plus_icon").removeClass("tree_six_rotate");
+		$(this).children(".widget_plus_icon").addClass("zero_six_rotate");
+    $(this).parent().children("ul").slideUp(390);
+	
+	var t = $(this);
+	 setTimeout(function() {
+	 	t.children(".widget_plus_icon").removeClass("minus_icon");
+		t.children(".widget_plus_icon").addClass("plus_icon");
+	 }, 400);
+  }
+  });
+ });
+
+/*Ending expand widget jquery codes */
+
+</script>
+	<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/anti-spam-5.2.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","visibility_show":"show","visibility_hide":"hide","width":"Auto","smooth_scroll_offset":"60"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/front.min.js.download"></script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/comment-reply.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var ajaxsearchlite = {"ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery"};
+var ASL = {"ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/www.journaldev.com\/wp-admin\/admin-ajax.php","js_scope":"jQuery","detect_ajax":"0","scrollbar":"1","js_retain_popstate":"0","version":"4728"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/jquery.ajaxsearchlite.min.js.download"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var q2w3_sidebar_options = [{"sidebar":"sidebar","margin_top":10,"margin_bottom":0,"stop_id":"","screen_max_width":1024,"screen_max_height":120,"width_inherit":false,"refresh_interval":1500,"window_load_hook":false,"disable_mo_api":false,"widgets":["adswidget10-quick-adsense-2"]}];
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/q2w3-fixed-widget.min.js.download"></script>
+<script type="text/javascript" src="./Spring Dependency Injection - JournalDev_files/wp-embed.min.js.download"></script>
+<script src="./Spring Dependency Injection - JournalDev_files/lazyload.js.download"></script>
+
+<!-- Page generated by LiteSpeed Cache 2.6.4.1 on 2018-10-31 23:12:34 --><div id="ajaxsearchlitesettings1" class="searchsettings wpdreams_asl_settings asl_w asl_s asl_s_1 asl_an_fadeOutDrop" style="animation-duration: 300ms; visibility: hidden; opacity: 0; display: none;">
+    <form name="options" autocomplete="off">
+
+        
+                <fieldset class="asl_sett_scroll">
+            <legend style="display: none;">Generic selectors</legend>
+            <div class="asl_option_inner hiddend">
+                <input type="hidden" name="qtranslate_lang" id="qtranslate_lang" value="0">
+            </div>
+
+	        
+            
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="checked" id="set_exactonly1" title="Exact matches only" name="set_exactonly">
+                    <label for="set_exactonly1">Exact matches only</label>
+                </div>
+                <div class="asl_option_label">
+                    Exact matches only                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_intitle1" title="Search in title" name="set_intitle" checked="checked">
+                    <label for="set_intitle1">Search in title</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in title                </div>
+            </div>
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_incontent1" title="Search in content" name="set_incontent" checked="checked">
+                    <label for="set_incontent1">Search in content</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in content                </div>
+            </div>
+            <div class="asl_option_inner hiddend">
+                <input type="checkbox" value="None" id="set_inexcerpt1" title="Search in excerpt" name="set_inexcerpt" checked="checked">
+                <label for="set_inexcerpt1">Search in excerpt</label>
+            </div>
+
+            <div class="asl_option">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inposts1" title="Search in posts" name="set_inposts" checked="checked">
+                    <label for="set_inposts1">Search in posts</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in posts                </div>
+            </div>
+            <div class="asl_option asl-o-last">
+                <div class="asl_option_inner">
+                    <input type="checkbox" value="None" id="set_inpages1" title="Search in pages" name="set_inpages" checked="checked">
+                    <label for="set_inpages1">Search in pages</label>
+                </div>
+                <div class="asl_option_label">
+                    Search in pages                </div>
+            </div>
+                    </fieldset>
+                    </form>
+</div><div id="ajaxsearchliteres1" class="vertical wpdreams_asl_results asl_w asl_r asl_r_1" style="animation-duration: 300ms; opacity: 0;">
+
+    
+    <div class="results mCustScr _mCSap_1 mCS_no_scrollbar"><div id="mCSBap_1" class="mCustomScrollBox mCS-light mCSBap_vertical mCSBap_inside" style="max-height: 0px;" tabindex="0"><div id="mCSBap_1_container" class="mCSBap_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+
+        
+            <div class="resdrg">
+            </div>
+
+        
+    </div><div id="mCSBap_1_scrollbar_vertical" class="mCSBap_scrollTools mCSBap_1_scrollbar mCS-light mCSBap_scrollTools_vertical" style="display: none;"><a href="https://www.journaldev.com/2410/spring-dependency-injection#" class="mCSBap_buttonUp">Scroll up the results</a><div class="mCSBap_draggerContainer"><div id="mCSBap_1_dragger_vertical" class="mCSBap_dragger" style="position: absolute; min-height: 30px; top: 0px;"><div class="mCSBap_dragger_bar" style="line-height: 30px;"></div></div><div class="mCSBap_draggerRail"></div></div><a href="https://www.journaldev.com/2410/spring-dependency-injection#" class="mCSBap_buttonDown">Scroll down the results</a></div></div></div>
+
+    
+    
+</div><div id="onesignal-bell-container" class="onesignal-bell-container onesignal-reset onesignal-bell-container-bottom-left"><div id="onesignal-bell-launcher" class="onesignal-bell-launcher onesignal-bell-launcher-md onesignal-bell-launcher-bottom-left onesignal-bell-launcher-theme-default onesignal-bell-launcher-active"><div class="onesignal-bell-launcher-button"><svg class="onesignal-bell-svg" xmlns="http://www.w3.org/2000/svg" width="99.7" height="99.7" viewBox="0 0 99.7 99.7" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0.35));;"><circle class="background" cx="49.9" cy="49.9" r="49.9" style=""></circle><path class="foreground" d="M50.1 66.2H27.7s-2-.2-2-2.1c0-1.9 1.7-2 1.7-2s6.7-3.2 6.7-5.5S33 52.7 33 43.3s6-16.6 13.2-16.6c0 0 1-2.4 3.9-2.4 2.8 0 3.8 2.4 3.8 2.4 7.2 0 13.2 7.2 13.2 16.6s-1 11-1 13.3c0 2.3 6.7 5.5 6.7 5.5s1.7.1 1.7 2c0 1.8-2.1 2.1-2.1 2.1H50.1zm-7.2 2.3h14.5s-1 6.3-7.2 6.3-7.3-6.3-7.3-6.3z" style=""></path><ellipse class="stroke" cx="49.9" cy="49.9" rx="37.4" ry="36.9" style=""></ellipse></svg></div><div class="onesignal-bell-launcher-badge" style="filter: drop-shadow(0 2px 4px rgba(34,36,38,0));; -webkit-filter: drop-shadow(0 2px 4px rgba(34,36,38,0));;"></div><div class="onesignal-bell-launcher-message"><div class="onesignal-bell-launcher-message-body"></div></div><div class="onesignal-bell-launcher-dialog" style="filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));; -webkit-filter: drop-shadow(0px 2px 2px rgba(34,36,38,.15));;"><div class="onesignal-bell-launcher-dialog-body"></div></div></div></div><iframe src="./Spring Dependency Injection - JournalDev_files/webPushAnalytics.html" style="display: none;"></iframe></body></html>

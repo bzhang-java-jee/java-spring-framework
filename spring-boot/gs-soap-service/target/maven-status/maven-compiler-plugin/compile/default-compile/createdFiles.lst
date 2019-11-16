@@ -1,0 +1,10 @@
+io/spring/guides/gs_producing_web_service/GetCountryResponse.class
+io/spring/guides/gs_producing_web_service/GetCountryRequest.class
+io/spring/guides/gs_producing_web_service/package-info.class
+hello/WebServiceConfig.class
+io/spring/guides/gs_producing_web_service/ObjectFactory.class
+hello/CountryEndpoint.class
+hello/CountryRepository.class
+hello/Application.class
+io/spring/guides/gs_producing_web_service/Country.class
+io/spring/guides/gs_producing_web_service/Currency.class
